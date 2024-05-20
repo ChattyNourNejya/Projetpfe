@@ -1,0 +1,311 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb
+        [title]="'All stays'"
+        [active_item]="'Add Patient'"
+      ></app-breadcrumb>
+    </div>
+  </div>
+  <div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="header">
+          <h2>
+            <strong>Add Admission</strong>
+
+          </h2>
+
+         
+        </div>
+        <div class="body">
+          <div class="right-align">
+           <a  [routerLink]="['/doctor/admissions' , patientKy]"> <button mat-raised-button color="primary">View stay history</button></a>
+
+
+          </div>
+          
+          <mat-horizontal-stepper #stepper>
+            <!-- Step for Stay -->
+            <mat-step>
+              <form [formGroup]="addstayForm" > 
+                <ng-template matStepLabel>Stay</ng-template>
+
+                <fieldset>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Emergency contact</mat-label>
+                    <input matInput #input maxlength="25" minlength="3" formControlName="stayEmergencyContact"> 
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Stay type</mat-label>
+                    <mat-select formControlName="stayType">
+                      <mat-option [value]="'Ambulatory'">Ambulatory </mat-option>
+                      <mat-option [value]="'Surgical'">Surgical</mat-option>
+                      <mat-option [value]="'Emergency'">Emergency</mat-option>
+                      <mat-option [value]="'Elective'">Elective </mat-option>
+                      <mat-option [value]="'Specialized care'"> Specialized care </mat-option>
+                      <mat-option [value]="'Palliative'">Palliative </mat-option>
+                      <mat-option [value]="'Diagnostic tests or evaluations'">Diagnostic tests or evaluations </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Family doctor</mat-label>
+                    <input matInput #input maxlength="25" minlength="0" formControlName="stayFamilyDoctor">
+                  </mat-form-field>
+                  
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Stay previsional begin</mat-label>
+                    <input matInput [matDatepicker]="beginPicker" formControlName="stayPrevisionalBegin">
+                    <mat-datepicker-toggle matSuffix [for]="beginPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #beginPicker></mat-datepicker>
+                  </mat-form-field>
+                  
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Stay previsional end</mat-label>
+                    <input matInput [matDatepicker]="endPicker" formControlName="stayPrevisionalEnd">
+                    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endPicker></mat-datepicker>
+                  </mat-form-field>
+                  
+                  <mat-form-field class="example-full-width " appearance="outline">
+                    <mat-label>Stay status</mat-label>
+                    <mat-select formControlName="stayStatus">                    
+                      <mat-option [value]="'Scheduled'">Scheduled</mat-option>
+                      <mat-option [value]="'Ongoing'">Ongoing </mat-option>
+                      <mat-option [value]="'completed'">Completed</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div class="row">
+                    <mat-form-field class="example-full-width" appearance="outline" >
+                      <mat-label>Stay note</mat-label>
+                      <input matInput #input maxlength="25" minlength="0" formControlName="stayNote"  >
+                    </mat-form-field>
+                  </div>
+                </fieldset>
+                <div>
+                  <button mat-raised-button matStepperNext color="primary">Next</button>
+                </div>
+              </form>
+            </mat-step>
+
+            
+             <!-- Step for Service -->
+             <mat-step>
+              <ng-template matStepLabel>Service</ng-template>
+              <ng-template matStepContent>
+                <form [formGroup]="addLeserviceForm">
+                  <fieldset>
+                    <mat-vertical-stepper>
+                      <!-- Première étape -->
+          <mat-step>
+            <ng-template matStepLabel>Service</ng-template>
+            <ng-template matStepContent>
+              <form [formGroup]="Leservice1">
+                <fieldset>
+                  <div class="row">
+                    <div class="col-md-10">
+                      &nbsp;
+                    </div>
+                    <div class="col-md-2">
+                      <button mat-icon-button class="tbl-action-btn" (click)="openServiceVerticalStepper()">
+                        <app-feather-icons [icon]="'plus'" [class]="'tbl-fav-plus'"></app-feather-icons>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <mat-form-field appearance="outline" class="example-full-width">
+                      <mat-label>Select service</mat-label>
+                      <mat-select formControlName="service_Nm">
+                        <mat-option *ngFor="let LeService of stayPertinentService" [value]="LeService.service_Nm">
+                          {{ LeService.service_Nm }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </fieldset>
+              </form>
+            </ng-template>
+          </mat-step>
+
+          <!-- Deuxième étape -->
+          <mat-step *ngIf="showServiceVerticalStepper">
+            <ng-template matStepLabel>Service</ng-template>
+            <ng-template matStepContent>
+              <form [formGroup]="Leservice2">
+                <fieldset>
+                  <div class="row">
+                    <div class="col-md-10">
+                      &nbsp;
+                    </div>
+                    <div class="col-md-2">
+                      <button mat-icon-button class="tbl-action-btn" (click)="openLastServiceVerticalStepperS()">
+                        <app-feather-icons [icon]="'plus'" [class]="'tbl-fav-plus'"></app-feather-icons>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <mat-form-field appearance="outline" class="example-full-width">
+                      <mat-label>Select service</mat-label>
+                      <mat-select formControlName="service_Nm">
+                        <mat-option *ngFor="let LeService of stayPertinentService" [value]="LeService.service_ky">
+                          {{ LeService.service_Nm }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </fieldset>
+              </form>
+            </ng-template>
+          </mat-step>
+
+          <!-- Troisième étape -->
+          <mat-step *ngIf="showLastServiceVerticalStepper">
+            <ng-template matStepLabel>Service</ng-template>
+            <ng-template matStepContent>
+              <form [formGroup]="Leservice3">
+                <fieldset>
+                  <div class="row">
+                    <div class="col-md-10">
+                      &nbsp;
+                    </div>
+                    <div class="col-md-2">
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'plus'" [class]="'tbl-fav-plus'"></app-feather-icons>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <mat-form-field appearance="outline" class="example-full-width">
+                      <mat-label>Select service</mat-label>
+                      <mat-select formControlName="service_Nm">
+                        <mat-option *ngFor="let LeService of stayPertinentService" [value]="LeService.service_ky">
+                          {{ LeService.service_Nm }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </fieldset>
+              </form>
+            </ng-template>
+          </mat-step>
+        </mat-vertical-stepper>
+      </fieldset>
+      <button mat-raised-button matStepperPrevious color="warn" class="msr-2">Back</button>
+      <button mat-raised-button matStepperNext color="primary" class="msr-2">Next</button>
+    </form>
+  </ng-template>
+</mat-step>
+
+            <!-- Step for Insurance -->
+            <mat-step>
+              <ng-template matStepLabel>Insurance</ng-template>
+              <ng-template matStepContent>
+                <form [formGroup]="addinsuranceForm">
+                  <fieldset>
+                    <mat-vertical-stepper>
+                      <!-- Première étape -->
+                      <mat-step>
+                        <ng-template matStepLabel>Insurance</ng-template>
+                        <ng-template matStepContent>
+                          <form [formGroup]="insurance1">
+                            <fieldset>
+                              <div class="row">
+                                <div class="col-md-10">
+                                  &nbsp;
+                                </div>
+                                <div class="col-md-2">
+                                  <button mat-icon-button class="tbl-action-btn" (click)="openInsuranceVerticalStepperS()">
+                                    <app-feather-icons [icon]="'plus'" [class]="'tbl-fav-plus'"></app-feather-icons>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Select insurance</mat-label>
+                                  <mat-select formControlName="insNm">
+                                    <mat-option *ngFor="let insurance of insurances" [value]="insurance.insNm">
+                                      {{ insurance.insNm }}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                            </fieldset>
+                          </form>
+                        </ng-template>
+                      </mat-step>
+
+                      <!-- Deuxième étape -->
+                      <mat-step *ngIf="showInsuranceVerticalStepper">
+                        <ng-template matStepLabel>Insurance</ng-template>
+                        <ng-template matStepContent>
+                          <form [formGroup]="insurance2">
+                            <fieldset>
+                              <div class="row">
+                                <div class="col-md-10">
+                                  &nbsp;
+                                </div>
+                                <div class="col-md-2">
+                                  <button mat-icon-button class="tbl-action-btn" (click)="openLastInsuranceVerticalStep()">
+                                    <app-feather-icons [icon]="'plus'" [class]="'tbl-fav-plus'"></app-feather-icons>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Select insurance</mat-label>
+                                  <mat-select formControlName="insNm">
+                                    <mat-option *ngFor="let insurance of insurances" [value]="insurance.insKy">
+                                      {{ insurance.insNm }}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                            </fieldset>
+                          </form>
+                        </ng-template>
+                      </mat-step>
+
+                      <!-- Troisième étape -->
+                      <mat-step *ngIf="showLastInsuranceVerticalStepper">
+                        <ng-template matStepLabel>Insurance</ng-template>
+                        <ng-template matStepContent>
+                          <form [formGroup]="insurance3">
+                            <fieldset>
+                              <div class="row">
+                                <div class="col-md-10">
+                                  &nbsp;
+                                </div>
+                                <div class="col-md-2">
+                                  <button mat-icon-button class="tbl-action-btn">
+                                    <app-feather-icons [icon]="'plus'" [class]="'tbl-fav-plus'"></app-feather-icons>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Select insurance</mat-label>
+                                  <mat-select formControlName="insNm">
+                                    <mat-option *ngFor="let insurance of insurances" [value]="insurance.insKy">
+                                      {{ insurance.insNm }}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                            </fieldset>
+                          </form>
+                        </ng-template>
+                      </mat-step>
+                    </mat-vertical-stepper>
+                  </fieldset>
+                  <p>you are done now.</p>
+                  <button mat-raised-button matStepperPrevious color="warn" class="msr-2">Back</button>
+                  <button mat-raised-button color="primary" (click)="add(patientKy)">Save</button>                </form>
+              </ng-template>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

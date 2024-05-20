@@ -1,0 +1,16 @@
+
+.file-drop-area {
+    width: 100px; /* ou la largeur que vous souhaitez */
+    height: 100px; /* ou la hauteur que vous souhaitez */
+    background-size: cover;
+    background-position: center;
+   
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .file-drop-area:hover {
+    border-color: #aaa;
+  }
+  

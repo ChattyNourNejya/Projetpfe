@@ -1,0 +1,1217 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb
+        [title]="'All Patients'"
+        [active_item]="'Add Patient'"
+      ></app-breadcrumb>
+    </div>
+  </div>
+  <div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="header">
+          <h2>
+            <strong>Add Patient</strong>
+          </h2>
+        </div>
+        <div class="body">
+          <mat-horizontal-stepper #stepper>
+            <mat-step>
+              <form [formGroup]="addpatientForm"> 
+                <ng-template matStepLabel>General Data</ng-template>
+
+                <fieldset>
+                  <div class="row">
+                    
+                    <div  class="col-md-5">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Enter First name</mat-label>
+                        <input matInput #input maxlength="25" minlength="3"  formControlName="patientFirstName"> 
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width" appearance="outline" >
+                        <mat-label>Enter Last name</mat-label>
+                        <input matInput #input maxlength="25" minlength="0" formControlName="patientLastName">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width" appearance="outline" >
+                        <mat-label>Enter Middle name</mat-label>
+                        <input matInput #input maxlength="25" minlength="0"  formControlName="patientMiddleName">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Marital status</mat-label>
+                        <mat-select formControlName="patientMaritalStatus">
+                          <mat-option [value]="0">Single</mat-option>
+                          <mat-option [value]="1">Married</mat-option>
+                          <mat-option [value]="2">Divorced</mat-option>
+                          <mat-option [value]="3">Widow</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  
+                  </div>
+                  <div class="row">
+           
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width" appearance="outline" >
+                        <mat-label>Enter Identify Number</mat-label>
+                        <input matInput #input maxlength="25" minlength="0"  formControlName="patientIdentityNumber">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Enter Identify Type</mat-label>
+                        <mat-select  formControlName="patientIdentityType">
+                          <mat-option [value]="0">ID_Card</mat-option>
+                          <mat-option [value]="1"> Passport</mat-option>
+                          <mat-option [value]="2">Residence_Permit</mat-option>              
+                            </mat-select>  
+                        
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Gender</mat-label>
+                        <mat-select  formControlName="patientGender">
+                          <mat-option [value]="0">Male</mat-option>
+                          <mat-option [value]="1">Female</mat-option>
+                          <mat-option [value]="2">Other</mat-option>
+      
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+          
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Birth Date</mat-label>
+                        <input matInput [matDatepicker]="picker"  formControlName="patientBirthDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Patient status</mat-label>
+                        <mat-select formControlName="patientStatus">                    
+                          <mat-option [value]="0">Valid</mat-option>
+                          <mat-option [value]="1">Provisional</mat-option>
+                          <mat-option [value]="2">Anonymous</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+          
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Nationality</mat-label>
+                        <mat-select  formControlName="patientNationality">
+                         <mat-option value="0">Tunisian</mat-option>
+                         <mat-option value="1">American</mat-option>
+                         <mat-option value="2">British</mat-option>
+                         <mat-option value="3">French</mat-option>
+                         <mat-option value="4">German</mat-option>
+                         <mat-option value="5">Italian</mat-option>
+                         <mat-option value="6">Japanese</mat-option>                      </mat-select>
+                      </mat-form-field>
+                      
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Death Date</mat-label>
+                        <input matInput [matDatepicker]="pickerD" formControlName="patientDeathDate">
+                        <mat-datepicker-toggle matSuffix [for]="pickerD"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerD></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+          
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width" appearance="outline" >
+                        <mat-label>Death Remarks</mat-label>
+                        <input matInput #input maxlength="25" minlength="0"  formControlName="patientDeathRemarks">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Size</mat-label>
+                        <input matInput formControlName="patientSize">
+                      </mat-form-field>
+                    </div>
+          
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Weight in Kg</mat-label>
+                        <input matInput  formControlName="patientWeight">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10">
+                      <mat-form-field class="example-full-width" appearance="outline" >
+                        <mat-label>Patient Remarks</mat-label>
+                        <input matInput #input maxlength="25" minlength="0"  formControlName="patientRemarks">
+                      </mat-form-field>
+                    </div>
+                                 
+                                </div>
+                </fieldset>
+                <div>
+                  <button mat-raised-button matStepperNext color="primary">Next</button>
+                </div>
+              </form>
+            </mat-step>
+
+            
+
+
+            <!--adresse-->
+
+            <mat-step  >
+              <ng-template matStepLabel  >Addresses</ng-template>
+              <ng-template matStepContent>
+                <form [formGroup]="addadressForm" >
+              
+                  <fieldset>
+                   
+            <mat-vertical-stepper >
+              <mat-step  >
+                <ng-template matStepLabel  >Address</ng-template>
+                <ng-template matStepContent>
+                  <form [formGroup]="address1"  >
+                
+                    <fieldset>
+                      <div class="row">
+                        <div class="col-md-10">
+                         
+                          &nbsp;
+                        </div>
+                    
+                        <div class="col-md-2">
+                          <button
+                          mat-icon-button
+                          class="tbl-action-btn"
+                          (click)=" openAddressVerticalStepper() "
+                        >
+                          <app-feather-icons
+                            [icon]="'plus'"
+                            [class]="'tbl-fav-plus'"
+                          ></app-feather-icons>
+                        </button>
+            
+                        </div>
+                        
+                      </div>
+                      <div class="row">
+                      
+                       
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Address Status </mat-label>
+                            <mat-select matInput  formControlName="addressValid">
+                              <mat-option [value]="0">Valid</mat-option>
+                              <mat-option [value]="1">Invalid</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-5">
+                          <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Primary Address</mat-label>
+            
+                          <mat-select formControlName="addressPrimary">
+                            <mat-option [value]="true">Yes</mat-option>
+                            <mat-option [value]="false">No</mat-option>
+                          </mat-select>
+                          </mat-form-field>
+                          &nbsp;
+                        </div>
+                      </div>
+                  
+                      <div class="row">
+                       
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Street Number</mat-label>
+                            <input matInput  formControlName="addressStreetNumber">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Address Street Label</mat-label>
+                            <input matInput  formControlName="addressStreetLabel">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                  
+                      <div class="row">
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Address Avenue Label</mat-label>
+                            <input matInput  formControlName="addressAvenueLabel">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Address Postal Code</mat-label>
+                            <input matInput  formControlName="addressPostalCode">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                  <div class="row">
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Address Apartment Number</mat-label>
+                            <input matInput  formControlName="addressApartmentNumber">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Address Building Label</mat-label>
+                            <input matInput  formControlName="addressBuildingLabel">
+                          </mat-form-field>
+                        </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Address Residence Label</mat-label>
+                        <input matInput  formControlName="addressResidenceLabel">
+                      </mat-form-field>
+                    </div>
+                   
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Address City</mat-label>
+                        <input matInput  formControlName="addressCity">
+                      </mat-form-field>
+                    </div>
+                   
+                  </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <mat-form-field class="example-full-width " appearance="outline">
+                    <mat-label>Address Type</mat-label>
+                    <mat-select matInput  formControlName="addressType">
+                      <mat-option [value]="0">Personal</mat-option>
+                      <mat-option [value]="1"> Employer</mat-option>
+          
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-5">
+                  <mat-form-field class="example-full-width " appearance="outline">
+                    <mat-label>Address Country</mat-label>
+                    <mat-select placeholder="Select Country" formControlName="addressCountry">
+                      <mat-option *ngFor="let country of countries" [value]="country.indexOf">
+                        {{ country }}
+                      </mat-option>
+                    </mat-select>      
+                    </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10">
+                  <mat-form-field class="example-full-width " appearance="outline">
+                    <mat-label>address Details</mat-label>
+                    <input matInput  formControlName="addressDetails">
+                  </mat-form-field>
+                </div>
+              </div>
+             
+                    </fieldset>
+                 
+                  </form>
+                  
+                </ng-template>
+                </mat-step>
+                <mat-step  *ngIf="showAddressVerticalStepper">
+                  <ng-template matStepLabel  >Address</ng-template>
+                  <ng-template matStepContent>
+                    <form  [formGroup]="address2" >
+                  
+                     
+                      <fieldset>
+                        <div class="row">
+                          <div class="col-md-10">
+                           
+                            &nbsp;
+                          </div>
+                          
+                          <div class="col-md-2">
+                            <button
+                            mat-icon-button
+                            class="tbl-action-btn"
+                            (click)="openLastAddressVerticalStep()  "
+                          >
+                            <app-feather-icons
+                              [icon]="'plus'"
+                              [class]="'tbl-fav-plus'"
+                            ></app-feather-icons>
+                          </button>
+              
+                          </div>
+                          
+                        </div>
+                        <div class="row">
+                          
+                          <div class="col-md-5">
+                            <mat-form-field class="example-full-width " appearance="outline">
+                              <mat-label>Address Status </mat-label>
+                              <mat-select matInput  formControlName="addressValid">
+                                <mat-option [value]="0">Valid</mat-option>
+                                <mat-option [value]="1">Invalid</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-5">
+                            <mat-form-field appearance="outline" class="example-full-width">
+                              <mat-label>Primary Address</mat-label>
+              
+                            <mat-select formControlName="addressPrimary">
+                              <mat-option [value]="true">Yes</mat-option>
+                              <mat-option [value]="false">No</mat-option>
+                            </mat-select>
+                            </mat-form-field>
+                            &nbsp;
+                          </div>
+                        </div>
+                    
+                        <div class="row">
+                         
+                          <div class="col-md-5">
+                            <mat-form-field class="example-full-width " appearance="outline">
+                              <mat-label>Street Number</mat-label>
+                              <input matInput  formControlName="addressStreetNumber">
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-5">
+                            <mat-form-field class="example-full-width " appearance="outline">
+                              <mat-label>Address Street Label</mat-label>
+                              <input matInput  formControlName="addressStreetLabel">
+                            </mat-form-field>
+                          </div>
+                        </div>
+                    
+                        <div class="row">
+                          <div class="col-md-5">
+                            <mat-form-field class="example-full-width " appearance="outline">
+                              <mat-label>Address Avenue Label</mat-label>
+                              <input matInput  formControlName="addressAvenueLabel">
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-5">
+                            <mat-form-field class="example-full-width " appearance="outline">
+                              <mat-label>Address Postal Code</mat-label>
+                              <input matInput  formControlName="addressPostalCode">
+                            </mat-form-field>
+                          </div>
+                        </div>
+                    <div class="row">
+                          <div class="col-md-5">
+                            <mat-form-field class="example-full-width " appearance="outline">
+                              <mat-label>Address Apartment Number</mat-label>
+                              <input matInput  formControlName="addressApartmentNumber">
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-5">
+                            <mat-form-field class="example-full-width " appearance="outline">
+                              <mat-label>Address Building Label</mat-label>
+                              <input matInput  formControlName="addressBuildingLabel">
+                            </mat-form-field>
+                          </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <mat-form-field class="example-full-width " appearance="outline">
+                          <mat-label>Address Residence Label</mat-label>
+                          <input matInput  formControlName="addressResidenceLabel">
+                        </mat-form-field>
+                      </div>
+                     
+                      <div class="col-md-5">
+                        <mat-form-field class="example-full-width " appearance="outline">
+                          <mat-label>Address City</mat-label>
+                          <input matInput  formControlName="addressCity">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                <div class="row">
+                  <div class="col-md-5">
+                    <mat-form-field class="example-full-width " appearance="outline">
+                      <mat-label>Address Type</mat-label>
+                      <mat-select matInput formControlName="addressType">
+                        <mat-option [value]="0">Personal</mat-option>
+                        <mat-option [value]="1"> Employer</mat-option>
+          
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-5">
+                    <mat-form-field class="example-full-width " appearance="outline">
+                      <mat-label>Address Country</mat-label>
+                      <mat-select placeholder="Select Country" formControlName="addressCountry">
+                        <mat-option *ngFor="let country of countries" [value]="country.indexOf">
+                          {{ country }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-10">
+                    <mat-form-field class="example-full-width " appearance="outline">
+                      <mat-label>address Details</mat-label>
+                      <input matInput formControlName="addressDetails">
+                    </mat-form-field>
+                  </div>
+                </div>
+               
+                      </fieldset>
+                      
+                    </form>
+                    
+                  </ng-template>
+                  </mat-step>
+                 <mat-step  *ngIf="showLastAddressVerticalStepper">
+                <ng-template matStepLabel  >Address</ng-template>
+                <ng-template matStepContent>
+                  <form  [formGroup]="address3" >
+                
+                   
+                    <fieldset>
+                      <div class="row">
+                        <div class="col-md-10">
+                         
+                          &nbsp;
+                        </div>
+                      
+                        <div class="col-md-2">
+                          <button mat-icon-button class="tbl-action-btn"  style="color: rgba(128, 128, 128, 0.5);" disabled>
+                              <app-feather-icons [icon]="'plus'" [class]="'tbl-fav-plus'"></app-feather-icons>
+                          </button>
+                      </div>
+                        
+                      </div>
+                      <div class="row">
+                       
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Address Status </mat-label>
+                            <mat-select matInput  formControlName="addressValid">
+                              <mat-option [value]="0">Valid</mat-option>
+                              <mat-option [value]="1">Invalid</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-5">
+                          <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Primary Address</mat-label>
+            
+                          <mat-select formControlName="addressPrimary">
+                            <mat-option [value]="true">Yes</mat-option>
+                            <mat-option [value]="false">No</mat-option>
+                          </mat-select>
+                          </mat-form-field>
+                          &nbsp;
+                        </div>
+                      </div>
+                  
+                      <div class="row">
+                       
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Street Number</mat-label>
+                            <input matInput  formControlName="addressStreetNumber">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Address Street Label</mat-label>
+                            <input matInput  formControlName="addressStreetLabel">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                  
+                      <div class="row">
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Address Avenue Label</mat-label>
+                            <input matInput  formControlName="addressAvenueLabel">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Address Postal Code</mat-label>
+                            <input matInput  formControlName="addressPostalCode">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                  <div class="row">
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Address Apartment Number</mat-label>
+                            <input matInput  formControlName="addressApartmentNumber">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-5">
+                          <mat-form-field class="example-full-width " appearance="outline">
+                            <mat-label>Address Building Label</mat-label>
+                            <input matInput  formControlName="addressBuildingLabel">
+                          </mat-form-field>
+                        </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Address Residence Label</mat-label>
+                        <input matInput  formControlName="addressResidenceLabel">
+                      </mat-form-field>
+                    </div>
+                   
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width " appearance="outline">
+                        <mat-label>Address City</mat-label>
+                        <input matInput  formControlName="addressCity">
+                      </mat-form-field>
+                    </div>
+                  </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <mat-form-field class="example-full-width " appearance="outline">
+                    <mat-label>Address Type</mat-label>
+                    <mat-select matInput formControlName="addressType">
+                      <mat-option [value]="0">Personal</mat-option>
+                      <mat-option [value]="1"> Employer</mat-option>
+          
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-5">
+                  <mat-form-field class="example-full-width " appearance="outline">
+                    <mat-label>Address Country</mat-label>
+                    <mat-select placeholder="Select Country" formControlName="addressCountry">
+                      <mat-option *ngFor="let country of countries" [value]="country.indexOf">
+                        {{ country }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10">
+                  <mat-form-field class="example-full-width " appearance="outline">
+                    <mat-label>address Details</mat-label>
+                    <input matInput  formControlName="addressDetails">
+                  </mat-form-field>
+                </div>
+              </div>
+             
+                    </fieldset>
+                
+                  </form>
+                  
+                </ng-template>
+                </mat-step>
+            
+              </mat-vertical-stepper>
+                  </fieldset>
+          
+                
+                  
+                
+                  <button mat-raised-button matStepperPrevious color="warn" class="msr-2">Back</button>
+                  <button mat-raised-button matStepperNext color="primary">Next</button>
+                </form>
+                
+              </ng-template>
+              </mat-step>
+
+
+              <!--email-->
+              
+              <mat-step>
+                <ng-template matStepLabel>Emails</ng-template>
+                <ng-template matStepContent>
+                  <form [formGroup]="addemailForm">
+                    <fieldset>
+                      
+                          <mat-vertical-stepper  >                  
+                              <mat-step >
+                                <ng-template matStepLabel>Email</ng-template>
+                                <ng-template matStepContent>
+                                  <form [formGroup]="email1" >
+                                    <fieldset>
+                                      <div class="row">
+                                     
+                                  
+                                        <div class="col-md-10">
+                                          
+                                      
+                                          &nbsp;
+                                        </div>
+                                        <div class="col-md-1">
+                                          <button
+                                          mat-icon-button
+                                          class="tbl-action-btn"
+                                          (click)="openEmailVerticalStepperS() "
+                                        >
+                                          <app-feather-icons
+                                            [icon]="'plus'"
+                                            [class]="'tbl-fav-plus'"
+                                          ></app-feather-icons>
+                                        </button>
+                          
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-md-7">
+                                          <mat-form-field appearance="outline" class="example-full-width">
+                                            <mat-label>Email Value</mat-label>
+                                            <input matInput [class.is-invalid]="email1.get('emailValue')?.invalid && email1.get('emailValue')?.touched"    type="email" class="form-control" formControlName="emailValue"/>
+                                          </mat-form-field>
+                                        </div>
+                                       
+                                        <div class="col-md-3">
+                                          <mat-form-field appearance="outline" class="example-full-width">
+                                            <mat-label>Email Primary</mat-label>
+                                            <mat-select formControlName="emailPrimary" >
+                                              <mat-option [value]="true">Yes</mat-option>
+                                              <mat-option [value]="false">No</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                        </div>
+                                     
+                                      </div>
+                                    </fieldset>
+                                  </form>
+                                 
+          
+          
+                                </ng-template>
+                              </mat-step>
+                              <mat-step *ngIf="showEmailVerticalStepper" >
+                                <ng-template matStepLabel>Email</ng-template>
+                                <ng-template matStepContent>
+                                  <form [formGroup]="email2" >
+                                   <fieldset>
+                                      <div class="row">
+                                        <div class="col-md-10">
+                                         
+                                          &nbsp;
+                                        </div>
+                                        
+                                        <div class="col-md-2">
+                                          <button
+                                          mat-icon-button
+                                          class="tbl-action-btn"
+                                          (click)="openLastEmailVerticalStepperS() "
+                                        >
+                                          <app-feather-icons
+                                            [icon]="'plus'"
+                                            [class]="'tbl-fav-plus'"
+                                          ></app-feather-icons>
+                                        </button>
+                          
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-md-7">
+                                          <mat-form-field appearance="outline" class="example-full-width">
+                                            <mat-label>Email Value</mat-label>
+                                            <input matInput [class.is-invalid]="email1.get('emailValue')?.invalid && email1.get('emailValue')?.touched"    type="email" class="form-control" formControlName="emailValue"/>
+                                          </mat-form-field>
+                                        </div>
+                                       
+                                        <div class="col-md-3">
+                                          <mat-form-field appearance="outline" class="example-full-width">
+                                            <mat-label>Email Primary</mat-label>
+                                            <mat-select formControlName="emailPrimary" >
+                                              <mat-option [value]="true">Yes</mat-option>
+                                              <mat-option [value]="false">No</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                        </div>
+                                     
+                                      </div>
+                                    </fieldset>
+                                  </form>
+                             
+          
+          
+                                </ng-template>
+                              </mat-step>
+                            
+                              <mat-step *ngIf="showLastEmailVerticalStepper">
+                                <ng-template matStepLabel>Email</ng-template>
+                                <ng-template matStepContent>
+                                  <form [formGroup]="email3" >
+                                   
+                                    <fieldset>
+                                      <div class="row">
+                                        <div class="col-md-10">
+                                         
+                                          &nbsp;
+                                        </div>
+                                    
+                                     
+                                        <div class="col-md-2">
+                                          <button mat-icon-button class="tbl-action-btn"  style="color: rgba(128, 128, 128, 0.5);" disabled>
+                                              <app-feather-icons [icon]="'plus'" [class]="'tbl-fav-plus'"></app-feather-icons>
+                                          </button>
+                                      </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-md-7">
+                                          <mat-form-field appearance="outline" class="example-full-width">
+                                            <mat-label>Email Value</mat-label>
+                                            <input matInput [class.is-invalid]="email1.get('emailValue')?.invalid && email1.get('emailValue')?.touched"    type="email" class="form-control" formControlName="emailValue"/>
+                                          </mat-form-field>
+                                        </div>
+                                       
+                                        <div class="col-md-3">
+                                          <mat-form-field appearance="outline" class="example-full-width">
+                                            <mat-label>Email Primary</mat-label>
+                                            <mat-select formControlName="emailPrimary" >
+                                              <mat-option [value]="true">Yes</mat-option>
+                                              <mat-option [value]="false">No</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                        </div>
+                                     
+                                      </div>
+                                    </fieldset>
+                                  </form>
+                               
+          
+          
+                                </ng-template>
+                              </mat-step>
+                            
+                          
+                            </mat-vertical-stepper>
+                       
+                    </fieldset>
+                    
+                  <button mat-raised-button matStepperPrevious color="warn" class="msr-2">Back</button>
+                  <button mat-raised-button matStepperNext color="primary">Next</button>
+                  </form>
+                </ng-template>
+           
+                
+              </mat-step>             
+
+
+
+
+
+
+
+
+           
+
+
+
+
+
+
+
+
+              <mat-step  >
+                <ng-template matStepLabel >Phones</ng-template>
+              
+                <form [formGroup]="addphoneForm">
+                  <fieldset>
+                    <!-- <div class="row">
+                      <div class="col-md-6">
+                        <mat-form-field appearance="outline" style="width: 100%">
+                          <ngx-mat-intl-tel-input
+                            [preferredCountries]="['us', 'gb']"
+                            [enablePlaceholder]="true"
+                            [enableSearch]="true"
+                            placeholder="Enter the number"
+                            name="dmgrphcPhn_Nmbr"
+                            formControlName="dmgrphcPhn_Nmbr" #dmgrphcPhn_Nmbr>
+                          </ngx-mat-intl-tel-input>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-5">
+                        <mat-form-field appearance="outline" style="width: 100%">
+                          <mat-select placeholder="Professional Phone" [(ngModel)]="phone.dmgrphcPhn_Prfssnl" formControlName="dmgrphcPhn_Prfssnl">
+                            <mat-option value="1">Professional</mat-option>
+                            <mat-option value="0">Not Professional</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                                 
+                   
+                      <div class="col-md-1">
+                        <button
+                        mat-icon-button
+                        class="tbl-action-btn"
+                        (click)="openVerticalStepperPhone() "
+                      >
+                        <app-feather-icons
+                          [icon]="'plus'"
+                          [class]="'tbl-fav-plus'"
+                        ></app-feather-icons>
+                      </button>
+          
+                      </div>
+                    </div>
+              
+                    <div class="row">
+                      <div class="col-md-6">
+                        <mat-form-field appearance="outline" style="width: 100%">
+                          <mat-select placeholder="Type of Phone" formControlName="dmgrphcPhn_Tp">
+                            <mat-option value="1">Fix</mat-option>
+                            <mat-option value="2">Mobile</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-6">
+                        <mat-checkbox formControlName="dmgrphcPhn_RcvSMS">Receive SMS</mat-checkbox>
+                      </div>
+                    </div> -->
+                    <mat-vertical-stepper >
+                      <mat-step >
+                        <ng-template matStepLabel >Phone</ng-template>
+                      
+                        <form [formGroup]="phone1">
+                          <fieldset>
+                            <div class="row">
+                              <div class="col-md-10"></div>
+                              <div class="col-md-1">
+                                <button
+                                mat-icon-button
+                                class="tbl-action-btn"
+                                (click)="openVerticalStepperPhone() "
+                              >
+                                <app-feather-icons
+                                  [icon]="'plus'"
+                                  [class]="'tbl-fav-plus'"
+                                ></app-feather-icons>
+                              </button>
+                            </div>
+                            </div>
+                            <div class="row">
+          
+                              <div class="col-md-5">
+                               
+                                <mat-form-field appearance="outline" style="width: 100%">
+                                  <mat-select placeholder="Select Country" formControlName="phoneCountry">
+                                    <mat-option *ngFor="let country of countries; let i = index" [value]="i">
+                                      {{ country }}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                                
+                              </div>
+                              <div class="col-md-5">
+                                  <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-select placeholder="Type of Phone" formControlName="phoneType">
+                                      <mat-option value="0">Home</mat-option>
+                                      <mat-option value="2">Mobile</mat-option> 
+                                      <mat-option value="2">Work</mat-option> 
+                     
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                              
+                              
+                            </div>
+                            <div class="row">
+                           
+                           
+                            
+                            
+                              <div class="col-md-5">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Receive SMS</mat-label>
+                                  <mat-select formControlName="phoneReceiveSMS" >
+                                    <mat-option [value]="true">Yes</mat-option>
+                                    <mat-option [value]="false">No</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              
+                              <div class="col-md-5">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Professional</mat-label>
+                                  <mat-select formControlName="phoneProfessional">
+                                    <mat-option [value]="true">Yes</mat-option>
+                                    <mat-option [value]="false">No</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              
+                            </div> 
+                            <div class="row">
+                              
+                             
+                              <div class="col-md-7">
+                                <!-- <mat-form-field appearance="outline" style="width: 100%">
+                                  <ngx-mat-intl-tel-input
+                                    [preferredCountries]="['us', 'gb']"
+                                    [enablePlaceholder]="true"
+                                    [enableSearch]="true"
+                                    placeholder="Enter the number"
+                                    name="dmgrphcPhn_Nmbr"
+                                    formControlName="phoneNumber" #phoneNumber>
+                                  </ngx-mat-intl-tel-input>
+                                </mat-form-field> -->
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Phone Number</mat-label>
+                                  <input matInput  type="email" class="form-control" formControlName="phoneNumber"/>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Primary Phone</mat-label>
+                                  <mat-select formControlName="phonePrimary">
+                                    <mat-option [value]="true">Yes</mat-option>
+                                    <mat-option [value]="false">No</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            
+                                      
+                            
+                          </fieldset>
+                          
+                        </form>
+                      </mat-step>
+                      <mat-step *ngIf="showPhoneVerticalStepper" >
+                        <ng-template matStepLabel >Phone</ng-template>
+                      
+                        <form [formGroup]="phone2">
+                          
+                          <fieldset>
+                            <div class="row">
+                              <div class="col-md-10"></div>
+                              <div class="col-md-1">
+                                <button
+                                mat-icon-button
+                                class="tbl-action-btn"
+                                (click)="openLastVerticalStepperPhone() "
+                              >
+                                <app-feather-icons
+                                  [icon]="'plus'"
+                                  [class]="'tbl-fav-plus'"
+                                ></app-feather-icons>
+                              </button>
+                            </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-5">
+                               
+                                  <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-select placeholder="Select Country" formControlName="phoneCountry">
+                                      <mat-option *ngFor="let country of countries; let i = index" [value]="i">
+                                        {{ country }}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                  
+                                </div>
+                                <div class="col-md-5">
+                                    <mat-form-field appearance="outline" style="width: 100%">
+                                      <mat-select placeholder="Type of Phone" formControlName="phoneType">
+                                        <mat-option value="0">Home</mat-option>
+                                        <mat-option value="2">Mobile</mat-option> 
+                                        <mat-option value="2">Work</mat-option> 
+                       
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </div>
+                          
+                                
+                              
+                            </div>
+                            <div class="row">
+                           
+                           
+                            
+                            
+                              <div class="col-md-5">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Receive SMS</mat-label>
+                                  <mat-select formControlName="phoneReceiveSMS" >
+                                    <mat-option [value]="true">Yes</mat-option>
+                                    <mat-option [value]="false">No</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              
+                              <div class="col-md-5">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Professional</mat-label>
+                                  <mat-select formControlName="phoneProfessional">
+                                    <mat-option [value]="true">Yes</mat-option>
+                                    <mat-option [value]="false">No</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              
+                            </div> 
+                            <div class="row">
+                              
+                             
+                              <div class="col-md-7">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Phone Number</mat-label>
+                                  <input matInput  type="email" class="form-control" formControlName="phoneNumber"/>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Primary Phone</mat-label>
+                                  <mat-select formControlName="phonePrimary">
+                                    <mat-option [value]="true">Yes</mat-option>
+                                    <mat-option [value]="false">No</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            
+                                    
+                            
+                          </fieldset>
+                       
+                        </form>
+                      </mat-step>
+                      <mat-step *ngIf="showLastPhoneVerticalStepper" >
+                        <ng-template matStepLabel >Phone</ng-template>
+                      
+                        <form [formGroup]="phone3">
+                         
+                          <fieldset>
+                            <div class="row">
+                              <div class="col-md-10"></div>
+                              <div class="col-md-1">
+                                <button mat-icon-button class="tbl-action-btn"  style="color: rgba(128, 128, 128, 0.5);" disabled>
+                                    <app-feather-icons [icon]="'plus'" [class]="'tbl-fav-plus'"></app-feather-icons>
+                                </button>
+                            </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-5">
+                               
+                                  <mat-form-field appearance="outline" style="width: 100%">
+                                    <mat-select placeholder="Select Country" formControlName="phoneCountry">
+                                      <mat-option *ngFor="let country of countries; let i = index" [value]="i">
+                                        {{ country }}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                  
+                                </div>
+                                <div class="col-md-5">
+                                    <mat-form-field appearance="outline" style="width: 100%">
+                                      <mat-select placeholder="Type of Phone" formControlName="phoneType">
+                                        <mat-option value="0">Home</mat-option>
+                                        <mat-option value="2">Mobile</mat-option> 
+                                        <mat-option value="2">Work</mat-option> 
+                       
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </div>
+                          
+                              
+                                         
+                             
+                            
+                            </div>
+                      
+                            <div class="row">
+                           
+                           
+                            
+                            
+                              <div class="col-md-5">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Receive SMS</mat-label>
+                                  <mat-select formControlName="phoneReceiveSMS" >
+                                    <mat-option [value]="true">Yes</mat-option>
+                                    <mat-option [value]="false">No</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              
+                              <div class="col-md-5">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Professional</mat-label>
+                                  <mat-select formControlName="phoneProfessional">
+                                    <mat-option [value]="true">Yes</mat-option>
+                                    <mat-option [value]="false">No</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              
+                            </div> 
+                            <div class="row">
+                              
+                             
+                              <div class="col-md-7">
+                                <!-- <mat-form-field appearance="outline" style="width: 100%">
+                                  <ngx-mat-intl-tel-input
+                                    [preferredCountries]="['us', 'gb']"
+                                    [enablePlaceholder]="true"
+                                    [enableSearch]="true"
+                                    placeholder="Enter the number"
+                                    name="dmgrphcPhn_Nmbr"
+                                    formControlName="phoneNumber" #phoneNumber>
+                                  </ngx-mat-intl-tel-input>
+                                </mat-form-field> -->
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Phone Number</mat-label>
+                                  <input matInput  type="email" class="form-control" formControlName="phoneNumber"/>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                  <mat-label>Primary Phone</mat-label>
+                                  <mat-select formControlName="phonePrimary">
+                                    <mat-option [value]="true">Yes</mat-option>
+                                    <mat-option [value]="false">No</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            
+                            
+                          </fieldset>
+                          
+                        </form>
+                      </mat-step>
+                    
+                    
+                      </mat-vertical-stepper>
+                  </fieldset>
+                  <p>your are now done.</p>
+                  <button mat-raised-button matStepperPrevious color="warn" class="msr-2">Back</button>
+                  <button mat-raised-button color="primary"    (click)="add(addpatientForm.value,
+   phone1.value,phone2.value,phone3.value,
+   address1.value,address2.value,address3.value
+   ,email1.value,email2.value,email3.value)" >Save</button>
+                </form>
+              </mat-step>
+          </mat-horizontal-stepper>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

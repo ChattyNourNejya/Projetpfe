@@ -1,0 +1,66 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Stays History'" [items]="[]" [active_item]="'Stays'"></app-breadcrumb>
+    </div>
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card p-3" *ngFor="let stay of stays">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card p-3" *ngFor="let stay of stays">
+                        <div class="row">
+                          <div class="col-md-6 border-right mb-0">
+                            <div class="doc-card-title">
+                              <h4> Emergency Contact :{{ stay.stay_emergency_contact }}</h4>
+                            </div>
+                            <p> <strong>Family doctor :</strong> {{ stay.stay_family_doctor }}</p>
+                            <p> <strong>Stay previsional begin :</strong> <i class="far fa-clock"></i>{{ stay.stay_previsional_begin | date }}</p>
+                            <p> <strong>Stay previsional end :</strong> <i class="far fa-clock "></i>{{ stay.stay_previsional_end | date }}</p>
+                  
+                            <div class="description">
+                              <p><strong></strong>&nbsp; {{ stay.stay_note }}<br></p>
+                            </div>
+                          </div>
+                          <div class="d-flex col-md-4 mb-0">
+                            <div class="d-flex flex-column justify-content-start user-profile w-100">
+                              <div><i class="fas fa-user-md pt-3 psr-3"></i>
+                                Stay Type : {{ stay.stay_type }}
+                              </div>
+                              <div><i class="far fa-comment-dots pt-3 psr-3"></i> Stay Status: {{ stay.stay_status }} </div>
+                              <div style="white-space: nowrap;" *ngFor="let insurance of stay.insurances" ><i class="material-icons">build</i> Insurances : {{ insurance.insNm }}<br>
+                              </div>
+                              <div *ngFor="let service of stay.stay_pertinent_service"> <i class="material-icons" style="vertical-align: middle;">event</i> Services :  {{ service.service_Nm }} </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12 d-flex justify-content-end">
+                            <button mat-raised-button color="primary">Edit stay</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          <div class="alert alert-message rounded mt-2" *ngIf="!hasStays() && !isLoading">
+            <i class='fas fa-exclamation-triangle' style="font-size: 16px;">
+              <strong> Oops!</strong> No stays found!
+            </i>
+          </div>
+        </div>
+           
+      </div>
+    </div>
+  </div>
+</section>
