@@ -665,10 +665,9 @@ export const ROUTES: RouteInfo[] = [
     role: ['Doctor'],
     submenu: [],
   },
-
   {
-    path: '/doctor/happened_appointment',
-    title: 'Happened appointment',
+    path: '/doctor/settings',
+    title: 'Happened appointement',
     iconType: 'material-icons-two-tone',
     icon: 'event_note',
     class: '',
@@ -680,10 +679,22 @@ export const ROUTES: RouteInfo[] = [
   },
 
   {
-    path: '/doctor/settings',
-    title: 'MENUITEMS.DOCTOR.SETTINGS',
+    path: '/doctor/happened_appointment',
+    title: 'Prevesional appointment',
     iconType: 'material-icons-two-tone',
-    icon: 'settings',
+    icon: 'event_note',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Doctor'],
+    submenu: [],
+  },
+  {
+    path: '/doctor/Medical_act',
+    title: 'Medical act',
+    iconType: 'material-icons-two-tone',
+    icon: 'local_hospital',
     class: '',
     groupTitle: false,
     badge: '',
@@ -692,7 +703,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
 
-  {
+  /* {
     path: '/apps/chat',
     title: 'MENUITEMS.DOCTOR.CHAT',
     iconType: 'material-icons-two-tone',
@@ -703,7 +714,7 @@ export const ROUTES: RouteInfo[] = [
     badgeClass: '',
     role: ['Doctor'],
     submenu: [],
-  },
+  // },*/
   // Patient Modules
   {
     path: '/patient/dashboard',
@@ -853,6 +864,7 @@ export const ROUTES: RouteInfo[] = [
     role: ['Admin', 'Doctor'],
     submenu: [],
   },
+  /*
   {
     path: 'calendar',
     title: 'Calendar',
@@ -862,10 +874,10 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: 'New',
     badgeClass: 'badge bg-blue sidebar-badge float-end',
-    role: ['Admin', 'Doctor'],
+    role: [ 'Doctor'],
     submenu: [],
-  },
-  {
+  },*/
+  /*{
     path: 'task',
     title: 'Task',
     iconType: 'material-icons-two-tone',
@@ -876,8 +888,8 @@ export const ROUTES: RouteInfo[] = [
     badgeClass: '',
     role: ['Admin', 'Doctor'],
     submenu: [],
-  },
-  {
+  },*/
+  /* {
     path: 'contacts',
     title: 'Contacts',
     iconType: 'material-icons-two-tone',
@@ -888,8 +900,8 @@ export const ROUTES: RouteInfo[] = [
     badgeClass: '',
     role: ['Admin', 'Doctor'],
     submenu: [],
-  },
-  {
+  },*/
+  /*{
     path: '',
     title: 'Email',
     iconType: 'material-icons-two-tone',
@@ -937,8 +949,8 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
-  {
+  },*/
+  /*{
     path: '',
     title: 'More Apps',
     iconType: 'material-icons-two-tone',
@@ -998,8 +1010,8 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
-  {
+  },*/
+  /*{
     path: '',
     title: 'Widgets',
     iconType: 'material-icons-two-tone',
@@ -1035,7 +1047,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
+   },*/
   {
     path: '',
     title: 'Components',

@@ -14,6 +14,7 @@ export class AllstaysComponent implements OnInit {
   isLoading: boolean = true;
 
   patientKy!: number; // Ajout du point d'exclamation pour indiquer que patientKy sera initialisé dans le constructeur
+panelOpenState: any;
 
   constructor(
     private stayService: StayserviceService,

@@ -1,22 +1,15 @@
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
-import { CalendarService } from '../../calendar.service';
-import {
-  UntypedFormControl,
-  Validators,
-  UntypedFormGroup,
-  UntypedFormBuilder,
-} from '@angular/forms';
-import { Calendar } from '../../calendar.model';
-
+import { Calendar } from '../calendar.model';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CalendarService } from '../calendar.service';
 export interface DialogData {
   id: number;
   action: string;
   calendar: Calendar;
 }
-
 @Component({
-  selector: 'app-form-dialog:not(o)',
+  selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
   styleUrls: ['./form-dialog.component.scss'],
 })

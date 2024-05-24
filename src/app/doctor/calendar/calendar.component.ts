@@ -1,32 +1,27 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import {
-  CalendarOptions,
-  DateSelectArg,
-  EventClickArg,
-} from '@fullcalendar/core';
-import { EventInput } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
-import { MatDialog } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UnsubscribeOnDestroyAdapter } from '@shared';
 import { Calendar } from './calendar.model';
-import { FormDialogComponent } from './dialogs/form-dialog/form-dialog.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Room } from './room';
+import { LeService } from '../patient/entities/LeService';
+import { ServiceZone } from './service-zone';
+import { FunctionalUnit } from './functional-unit';
+import { RoomGroup } from './room-group';
+import { MatDialog } from '@angular/material/dialog';
 import { CalendarService } from './calendar.service';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { UnsubscribeOnDestroyAdapter } from '../shared/UnsubscribeOnDestroyAdapter';
+import { CalendarOptions, DateSelectArg } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import { FormDialogComponent } from './form-dialog/form-dialog.component';
 import { Direction } from '@angular/cdk/bidi';
-import { Room } from './room';
-import { LeService } from 'app/doctor/patient/entities/LeService';
-import { ServiceZone } from './service-zone';
-import { FunctionalUnit } from './functional-unit';
-import { RoomGroup } from './room-group';
 
 @Component({
   selector: 'app-calendar',
@@ -56,6 +51,7 @@ export class CalendarComponent
   RoomGroups: RoomGroup[] = [];
   functionalUnitId: number | null;
   selectedRoomGroupId: number | null;
+
   constructor(
     private fb: FormBuilder,
     private dialog: MatDialog,
@@ -72,7 +68,6 @@ export class CalendarComponent
     this.selectedFunctionalUnitId = null;
     this.selectedRoomGroupId = null;
     this.selectedServiceZoneId = null;
-    this;
     this.addLeserviceForm = this.fb.group({
       service_Nm: [''],
     });
@@ -120,12 +115,10 @@ export class CalendarComponent
     selectable: true,
     selectMirror: true,
     dayMaxEvents: true,
-    select: this.handleDateSelect.bind(this),
+    select: this.addNewEvent.bind(this),
+    dateClick: this.addNewEvent.bind(this),
   };
 
-  handleDateSelect(selectInfo: DateSelectArg) {
-    this.addNewEvent();
-  }
 
   getResources(): any[] {
     return [
@@ -250,6 +243,7 @@ export class CalendarComponent
         }
       );
   }
+
   getRoomGroupsByFunctionalUnit(selectedFunctionalUnitId: number) {
     this.calendarService
       .getRoomGroupsByFunctionalUnit(selectedFunctionalUnitId)

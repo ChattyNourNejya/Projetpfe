@@ -56,10 +56,14 @@ export class AdmissionComponent implements OnInit {
       stayEmergencyContact: ['', [Validators.required]],
       stayType: ['', [Validators.required]],
       stayFamilyDoctor: [''],
+      stayFamilyDoctorEmail: ['', [Validators.email, Validators.maxLength(50)]],
+      stayFamilyDoctorPhone: ['', Validators.maxLength(15)],
       stayPrevisionalBegin: ['', [Validators.required]],
       stayPrevisionalEnd: ['', [Validators.required]],
       stayStatus: ['', [Validators.required]],
       stayNote: [''],
+            insurances: this.fb.array([]),
+      services: this.fb.array([]),
     });
 
     this.addinsuranceForm = this.generateInsuranceFormGroup();
@@ -186,6 +190,8 @@ export class AdmissionComponent implements OnInit {
       stay_emergency_contact: stayDetails.stayEmergencyContact,
       stay_type: stayDetails.stayType,
       stay_family_doctor: stayDetails.stayFamilyDoctor,
+      stay_family_doctor_email: stayDetails.stayFamilyDoctorEmail,
+      stay_family_doctor_phone: stayDetails.stayFamilyDoctorPhone,
       stay_previsional_begin: stayDetails.stayPrevisionalBegin,
       stay_previsional_end: stayDetails.stayPrevisionalEnd,
       stay_status: stayDetails.stayStatus,

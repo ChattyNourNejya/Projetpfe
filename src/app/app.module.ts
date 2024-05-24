@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { DoctorModule } from './doctor/doctor.module';
-
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,9 +22,12 @@ import {
   HTTP_INTERCEPTORS,
   HttpClient,
 } from '@angular/common/http';
-
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import {
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule,
+} from '@danielmoncada/angular-datetime-picker'; // Importer le module ici
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -56,10 +57,10 @@ export function createTranslateLoader(http: HttpClient) {
       },
     }),
     LoadingBarRouterModule,
-    // core & shared
     CoreModule,
     SharedModule,
-
+    OwlDateTimeModule, // Importez le module OwlDateTimeModule
+    OwlNativeDateTimeModule, // Importez le module OwlNativeDateTimeModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

@@ -9,7 +9,9 @@ import { PatientsComponent } from './patient/patients/patients.component';
 import { AddPatientComponent } from './patient/add-patient/add-patient.component';
 import { AdmissionComponent } from './patient/admission/admission.component';
 import { AllstaysComponent } from './patient/allstays/allstays.component';
-import { HappenedAppointmentComponent } from './happened-appointment/happened-appointment.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { MedicalActComponent } from './medical-act/medical-act.component';
+
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -27,10 +29,17 @@ const routes: Routes = [
     path: 'patients',
     component: PatientsComponent,
   },
+
+  {
+    path: 'Medical_act',
+    component: MedicalActComponent,
+  },
+
   {
     path: 'happened_appointment',
-    component: HappenedAppointmentComponent,
+    component: CalendarComponent,
   },
+
   {
     path: 'add-patient', // Ajout du chemin pour add-patient sous doctor
     component: AddPatientComponent,

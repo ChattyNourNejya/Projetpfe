@@ -20,8 +20,14 @@ import { DeleteComponent } from './patient/delete/delete.component';
 import { PatientsComponent } from './patient/patients/patients.component';
 import { AdmissionComponent } from './patient/admission/admission.component';
 import { AllstaysComponent } from './patient/allstays/allstays.component';
-import { HappenedAppointmentComponent } from './happened-appointment/happened-appointment.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// Ajoutez les imports spécifiques pour le calendrier ici
+import { CalendarComponent } from './calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { OwlDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+import { FormDialogComponent } from './calendar/form-dialog/form-dialog.component';
+import { MedicalActComponent } from './medical-act/medical-act.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +41,9 @@ import { HappenedAppointmentComponent } from './happened-appointment/happened-ap
     DeleteComponent,
     AdmissionComponent,
     AllstaysComponent,
-    HappenedAppointmentComponent,
+    CalendarComponent,
+    FormDialogComponent,
+    MedicalActComponent, // Ajoutez le composant de calendrier ici
   ],
   imports: [
     CommonModule,
@@ -50,6 +58,10 @@ import { HappenedAppointmentComponent } from './happened-appointment/happened-ap
     DragDropModule,
     ComponentsModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FullCalendarModule, // Importez le module de calendrier ici
+    OwlDateTimeModule, // Importez le module de date/heure Owl ici
   ],
   providers: [AppointmentsService],
 })
