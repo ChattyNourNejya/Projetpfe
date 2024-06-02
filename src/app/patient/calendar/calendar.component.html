@@ -1,0 +1,203 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb
+        [title]="'Calendar'"
+        [items]="[]"
+        [active_item]="'Calendar'"
+      ></app-breadcrumb>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <mat-horizontal-stepper #stepper>
+              <!-- Step 1: Service Selection -->
+              <mat-step>
+                <ng-template matStepLabel>Service</ng-template>
+                <ng-template matStepContent>
+                  <form [formGroup]="addLeserviceForm">
+                    <fieldset>
+                      <!-- Your form controls for selecting a service -->
+                      <mat-form-field
+                        appearance="outline"
+                        class="example-full-width"
+                      >
+                        <mat-label>Select service</mat-label>
+                        <mat-select
+                          formControlName="service_Nm"
+                          (selectionChange)="
+                            onServiceSelected($event.value?.service_ky)
+                          "
+                        >
+                          <mat-option
+                            *ngFor="let service of stayPertinentService"
+                            [value]="service"
+                          >
+                            {{ service.service_Nm }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </fieldset>
+                    <div>
+                      <button mat-button matStepperPrevious color="primary">
+                        Back
+                      </button>
+                      <button
+                        mat-button
+                        matStepperNext
+                        color="primary"
+                        (click)="onNext1()"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </form>
+                </ng-template>
+              </mat-step>
+              <!-- Step 2: Service Zone Selection -->
+              <mat-step>
+                <ng-template matStepLabel>Service zone</ng-template>
+                <ng-template matStepContent>
+                  <form [formGroup]="Leservice1">
+                    <fieldset>
+                      <div *ngIf="serviceZones">
+                        <!-- Your form controls for selecting service zones -->
+                        <mat-form-field
+                          appearance="outline"
+                          class="example-full-width"
+                        >
+                          <mat-label>Select service zone</mat-label>
+                          <mat-select
+                            formControlName="serviceZone"
+                            (selectionChange)="
+                              onServiceZoneSelected($event.value?.serviceZone_ky)
+                            "
+                          >
+                            <mat-option
+                              *ngFor="let zone of serviceZones"
+                              [value]="zone"
+                            >
+                              {{ zone.serviceZone_Nm }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div *ngIf="!serviceZones">Loading service zones...</div>
+                    </fieldset>
+                    <div>
+                      <button mat-button matStepperPrevious color="primary">
+                        Back
+                      </button>
+                      <button
+                        mat-button
+                        matStepperNext
+                        color="primary"
+                        (click)="onNext2()"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </form>
+                </ng-template>
+              </mat-step>
+              <!-- Step 3: Functional Unit -->
+              <mat-step>
+                <ng-template matStepLabel>Functional Unit</ng-template>
+                <ng-template matStepContent>
+                  <form [formGroup]="Leservice1">
+                    <fieldset>
+                      <div *ngIf="functionalUnits">
+                        <!-- Your form controls for selecting functional units -->
+                        <mat-form-field
+                          appearance="outline"
+                          class="example-full-width"
+                        >
+                          <mat-label>Select functional unit</mat-label>
+                          <mat-select formControlName="functionalUnit"
+                           (selectionChange)="
+                              onfunctionalUnitSelected($event.value?.functionalUnit_Ky)
+                            ">
+                            <mat-option
+                              *ngFor="let unit of functionalUnits"
+                              [value]="unit"
+                            >
+                              {{ unit.functionalUnit_Nm }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div *ngIf="!functionalUnits">
+                        Loading functional units...
+                      </div>
+                    </fieldset>
+                    <div>
+                      <button mat-button matStepperPrevious color="primary">
+                        Back
+                      </button>
+                      <button mat-button matStepperNext color="primary" (click)="onNext3()">
+                        Next
+                      </button>
+                    </div>
+                  </form>
+                </ng-template>
+              </mat-step>
+              <!-- Step 4: Room Group -->
+              <mat-step>
+                <ng-template matStepLabel>Room Group</ng-template>
+                <ng-template matStepContent>
+                  <form [formGroup]="Leservice1">
+                    <fieldset>
+                      <div class="row">
+                        
+                          <mat-form-field
+                            class="example-full-width"
+                            appearance="outline"
+                          >
+                            <mat-label>Enter Room Group</mat-label>
+                        <mat-select formControlName="roomGroup"
+                         (selectionChange)="
+                              onRoomGroupSelected($event.value?.roomGroup_Ky)
+                            "
+                          >
+                            <mat-option
+                              *ngFor="let RoomGroup of RoomGroups"
+                              [value]="RoomGroup"
+                            >
+                              {{ RoomGroup.roomGroup_Nm }}
+                            </mat-option>
+                          </mat-select>
+                          </mat-form-field>
+                        
+                      </div>
+                    </fieldset>
+                    <div>
+                      <button mat-button matStepperPrevious color="primary">
+                        Back
+                      </button>
+                      <button type="button" class="btn btn-out+line-primary"  (click)="save()">
+                        Save
+                      </button>
+                    </div>
+                  </form>
+                </ng-template>
+              </mat-step>
+            </mat-horizontal-stepper>
+            <br /><br />
+            <div class="row">
+              <div class="col-md-2 col-sm-12 p-l-30">
+                <!-- Remove the filter list -->
+              </div>
+              <div class="col-md-10 col-sm-12">
+                <div class="panel-body">
+                  <full-calendar [options]="calendarOptions"></full-calendar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

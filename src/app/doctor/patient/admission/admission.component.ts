@@ -10,6 +10,7 @@ import { LeService } from '../entities/LeService';
 import { Patient } from '../entities/patient';
 import { ActivatedRoute } from '@angular/router';
 import { PatientService } from '../service/patient.service';
+import { StayRoom } from 'app/patient/patient/entities/stay-room';
 
 @Component({
   selector: 'app-admission',
@@ -39,6 +40,7 @@ export class AdmissionComponent implements OnInit {
 
   insurances: Insurance[] = [];
   stayPertinentService: LeService[] = [];
+  stayRooms: StayRoom[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -62,8 +64,9 @@ export class AdmissionComponent implements OnInit {
       stayPrevisionalEnd: ['', [Validators.required]],
       stayStatus: ['', [Validators.required]],
       stayNote: [''],
-            insurances: this.fb.array([]),
-      services: this.fb.array([]),
+      insurances: this.fb.array([]),
+      service: ['', [Validators.required]],
+      stayRoom: ['', [Validators.required]],
     });
 
     this.addinsuranceForm = this.generateInsuranceFormGroup();

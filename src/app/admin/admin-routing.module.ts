@@ -16,11 +16,12 @@ const routes: Routes = [
   },
   {
     path: 'insurance',
-    loadChildren: () => import('./insurance/insurance/insurance.module').then((m) => m.InsuranceModule),
+    loadChildren: () =>
+      import('./insurance/insurance/insurance.module').then(
+        (m) => m.InsuranceModule
+      ),
   },
-  
-  
-  
+
   {
     path: 'doctors',
     loadChildren: () =>
@@ -71,6 +72,11 @@ const routes: Routes = [
     path: 'pharmacy',
     loadChildren: () =>
       import('./pharmacy/pharmacy.module').then((m) => m.PharmacyModule),
+  },
+  {
+    path: 'users',
+    loadChildren: () =>
+      import('./user-acc/user-acc.module').then((m) => m.UserAccModule),
   },
 ];
 

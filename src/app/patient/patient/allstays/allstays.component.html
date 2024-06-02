@@ -1,0 +1,143 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb
+        [title]="'Stays History'"
+        [items]="[]"
+        [active_item]="'Stays'"
+      ></app-breadcrumb>
+    </div>
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card p-3" *ngFor="let stay of stays">
+                  <div class="row">
+                    <div class="col-md-6 border-right mb-0">
+                      <div class="doc-card-title">
+                        <h4>
+                          Emergency Contact: {{ stay.stay_emergency_contact }}
+                        </h4>
+                      </div>
+                     
+                      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                             <p class="text-dark-grey">
+                       <i class="fas fa-user-md"></i>
+                        <strong>Family doctor: </strong>
+                         <span class="ml-2">{{ stay.stay_family_doctor }}</span>
+                      </p>
+                          </mat-panel-title>
+   
+                        </mat-expansion-panel-header>
+                        <p class="text-dark-grey">
+                          <i class="fas fa-envelope"></i>
+                          <strong>Email: </strong>
+                          <span class="ml-2">{{ stay.stay_family_doctor_email }}</span>
+                        </p>
+                        <p class="text-dark-grey">
+                          <i class="fas fa-phone"></i>
+                          <strong>Phone: </strong>
+                          <span class="ml-2">{{ stay.stay_family_doctor_phone}}</span>
+                        </p>
+                      </mat-expansion-panel>
+
+                      <br>
+                      <p class="text-dark-grey">
+                        <i class="far fa-clock"></i>
+                        <strong>Stay previsional begin: </strong>
+                        <span class="ml-2">{{ stay.stay_previsional_begin | date }}</span>
+                      </p>
+                      <p class="text-dark-grey">
+                        <i class="far fa-clock"></i>
+                        <strong>Stay previsional end: </strong>
+                        <span class="ml-2">{{ stay.stay_previsional_end | date }}</span>
+                      </p>
+                      <p class="text-dark-grey">
+                        <i class="fas fa-sticky-note"></i>
+                        <strong>Note: </strong>
+                        <span class="ml-2">{{ stay.stay_note }}</span>
+                      </p>
+                    </div>
+                    <div class="d-flex col-md-4 mb-0">
+                      <div class="d-flex flex-column justify-content-start user-profile w-100">
+                        <div class="text-dark-grey">
+                          <i class="fas fa-user-md pt-5 psr-2"></i>
+                          <strong>Stay Type: </strong>
+                          <span class="ml-2">{{ stay.stay_type }}</span>
+                        </div>
+                        <div class="text-dark-grey">
+                          <i class="far fa-comment-dots pt-3 psr-2"></i>
+                          <strong>Stay Status: </strong>
+                          <span class="ml-2">{{ stay.stay_status }}</span>
+                        </div>
+                        <div class="insurance-container text-dark-grey">
+                          <i class="material-icons icon-small">local_hospital</i>
+                          <strong>Insurances: </strong>
+                          <div class="insurance-list ml-2">
+                            <span
+                              *ngFor="
+                                let insurance of stay.insurances;
+                                let last = last
+                              "
+                            >
+                              {{ insurance.insNm }}
+                              <span *ngIf="!last">, </span>
+                            </span>
+                          </div>
+                        </div>
+                        <div
+                          *ngFor="
+                            let service of stay.stay_pertinent_service
+                          "
+                          class="text-dark-grey"
+                        >
+                          <i class="material-icons" style="vertical-align: middle">event</i>
+                          <strong>Services: </strong>
+                          <span class="ml-2">{{ service.service_Nm }}</span>
+
+
+                             <p class="text-dark-grey">
+                        <i class="far fa-clock"></i>
+                        <strong>Stay Room : </strong>
+                        <span class="ml-2">{{ service.stayRoom }}</span>
+                      </p>
+                      
+                        </div>
+
+
+                      
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 d-flex justify-content-end">
+                      <button mat-raised-button color="primary">
+                        Edit stay
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="alert alert-message rounded mt-2"
+              *ngIf="!hasStays() && !isLoading"
+            >
+              <i class="fas fa-exclamation-triangle" style="font-size: 16px">
+                <strong> Oops!</strong> No stays found!
+              </i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

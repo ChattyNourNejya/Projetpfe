@@ -20,6 +20,8 @@ export class SigninComponent
   submitted = false;
   loading = false;
   error = '';
+  userType: string = '';
+
   hide = true;
   constructor(
     private formBuilder: UntypedFormBuilder,
@@ -42,14 +44,19 @@ export class SigninComponent
   adminSet() {
     this.authForm.get('username')?.setValue('admin@hospital.org');
     this.authForm.get('password')?.setValue('admin@123');
+    this.userType = 'HRM Manager';
   }
   doctorSet() {
     this.authForm.get('username')?.setValue('doctor@hospital.org');
     this.authForm.get('password')?.setValue('doctor@123');
+        this.userType = 'Medical Staff ';
+
   }
   patientSet() {
     this.authForm.get('username')?.setValue('patient@hospital.org');
     this.authForm.get('password')?.setValue('patient@123');
+        this.userType = 'Receptionist';
+
   }
   onSubmit() {
     this.submitted = true;

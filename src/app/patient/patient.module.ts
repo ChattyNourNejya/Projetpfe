@@ -12,6 +12,22 @@ import { BillingComponent } from './billing/billing.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { OwlDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+
+// Assuming these are the components related to patient module
+import { AddPatientComponent } from './patient/add-patient/add-patient.component';
+import { DeleteComponent } from './patient/delete/delete.component';
+import { PatientsComponent } from './patient/patients/patients.component';
+import { AdmissionComponent } from './patient/admission/admission.component';
+import { AllstaysComponent } from './patient/allstays/allstays.component';
+
+// Specific imports for the calendar
+import { CalendarComponent } from './calendar/calendar.component';
+import { FormDialogComponent } from './calendar/form-dialog/form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,18 +36,31 @@ import { SharedModule } from '@shared';
     MedicalRecordsComponent,
     BillingComponent,
     SettingsComponent,
+    AddPatientComponent,
+    DeleteComponent,
+    PatientsComponent,
+    AdmissionComponent,
+    AllstaysComponent,
+    CalendarComponent,
+    FormDialogComponent,
   ],
   imports: [
     CommonModule,
+    PatientRoutingModule,
     NgChartsModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
-    PatientRoutingModule,
     NgApexchartsModule,
     NgScrollbarModule,
     ComponentsModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    DragDropModule,
+    FullCalendarModule,
+    OwlDateTimeModule,
   ],
 })
 export class PatientModule {}

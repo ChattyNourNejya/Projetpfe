@@ -82,6 +82,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.sidebarItems = ROUTES.filter(
         (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf('All') !== -1
       );
+      if (userRole === Role.Receptionist) {
+        this.userType = Role.Receptionist;
+      } else if (userRole === Role.medStaf) {
+        this.userType = Role.medStaf;
+      } 
+
+
+
+
       if (userRole === Role.Admin) {
         this.userType = Role.Admin;
       } else if (userRole === Role.Patient) {
