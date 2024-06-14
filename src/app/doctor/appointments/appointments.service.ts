@@ -1,10 +1,19 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Appointments } from './appointments.model';
+
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Patient } from '../patient/entities/patient';
 @Injectable()
 export class AppointmentsService extends UnsubscribeOnDestroyAdapter {
+  //       error: (error: HttpErrorResponse) => {
+  //          // error code here
+  //       },
+  //     });
+
   private readonly API_URL = 'assets/data/doc-appointments.json';
   isTblLoading = true;
   dataChange: BehaviorSubject<Appointments[]> = new BehaviorSubject<
@@ -22,19 +31,16 @@ export class AppointmentsService extends UnsubscribeOnDestroyAdapter {
     return this.dialogData;
   }
   /** CRUD METHODS */
-  getAllAppointmentss(): void {
-    this.subs.sink = this.httpClient
-      .get<Appointments[]>(this.API_URL)
-      .subscribe({
-        next: (data) => {
-          this.isTblLoading = false;
-          this.dataChange.next(data);
-        },
-        error: (error: HttpErrorResponse) => {
-          this.isTblLoading = false;
-          console.log(error.name + ' ' + error.message);
-        },
-      });
+  getAllAppointments(): Observable<Appointments[]> {
+    return this.httpClient
+      .get<Appointments[]>('http://localhost:8085/medvisitschdlds')
+      .pipe(catchError(this.errorHandler));
+  }
+
+  getPatients(): Observable<Patient[]> {
+    return this.httpClient
+      .get<Patient[]>('http://localhost:8085/getPatient')
+      .pipe(catchError(this.errorHandler));
   }
   addAppointments(appointments: Appointments): void {
     this.dialogData = appointments;
@@ -74,5 +80,18 @@ export class AppointmentsService extends UnsubscribeOnDestroyAdapter {
     //          // error code here
     //       },
     //     });
+  }
+
+  private errorHandler(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Erreur côté client
+      errorMessage = error.error.message;
+    } else {
+      // Erreur côté serveur
+      errorMessage = `Code d'erreur : ${error.status}\nMessage : ${error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
   }
 }

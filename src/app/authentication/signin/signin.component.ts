@@ -76,9 +76,9 @@ export class SigninComponent
                 if (role === Role.All || role === Role.Admin) {
                   this.router.navigate(['/admin/dashboard/main']);
                 } else if (role === Role.Doctor) {
-                  this.router.navigate(['/doctor/dashboard']);
+                  this.router.navigate(['/doctor/happened_appointment']);
                 } else if (role === Role.Patient) {
-                  this.router.navigate(['/patient/dashboard']);
+                  this.router.navigate(['/patient/patients']);
                 } else {
                   this.router.navigate(['/authentication/signin']);
                 }

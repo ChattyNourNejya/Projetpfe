@@ -29,6 +29,7 @@ import { AllstaysComponent } from './patient/allstays/allstays.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FormDialogComponent } from './calendar/form-dialog/form-dialog.component';
 
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -43,6 +44,7 @@ import { FormDialogComponent } from './calendar/form-dialog/form-dialog.componen
     AllstaysComponent,
     CalendarComponent,
     FormDialogComponent,
+  
   ],
   imports: [
     CommonModule,

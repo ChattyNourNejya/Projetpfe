@@ -1,1 +1,37 @@
+/* Example CSS for table styling */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
 
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+/* Define color coding for different statuses */
+.Planned {
+  color: #2196f3; /* Blue color for planned status */
+}
+
+.RePlanned {
+  color: #ff9800; /* Orange color for replanned status */
+}
+
+.Cancelled {
+  color: #f44336; /* Red color for cancelled status */
+}
+
+
+/* Additional styling for specific elements */
+/* Example: Change font size of status column */
+.table td:nth-child(5) {
+  font-size: 14px;
+}

@@ -82,11 +82,11 @@
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Status</mat-label>
-                    <mat-select [(ngModel)]="genderQuery" (selectionChange)="searchPatients()">
+                    <mat-select [(ngModel)]="statusQuery" (selectionChange)="searchPatients()">
                       <mat-option value="">None</mat-option>
-                      <mat-option [value]="'MALE'">Valid</mat-option>
-                      <mat-option [value]="'FEMALE'">Previsional</mat-option>
-                      <mat-option [value]="'OTHER'">Anonymous</mat-option>
+                      <mat-option [value]="'VALID'">Valid</mat-option>
+                      <mat-option [value]="'PROVISIONAL'">Previsional</mat-option>
+                      <mat-option [value]="'ANONYMOUS'">Anonymous</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
@@ -125,13 +125,10 @@
                       <td>{{ patient.patientStatus }}</td>
                       <td>
                         <div class="d-flex align-items-center">
-                          <button mat-icon-button class="tbl-action-btn mr-1" (click)="modify(patient)" matTooltip="Modify">
-                            <app-feather-icons [icon]="'edit-2'" [class]="'tbl-fav-modify'"></app-feather-icons>
-                          </button>
-                          <button mat-icon-button class="tbl-action-btn mr-1" (click)="onDelete(patient)" matTooltip="Delete">
-                            <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
-                          </button>
+                         
+                          
                          <a  [routerLink]="['/patient/add-admission', patient.patientKy]"> <button type="button" class="btn btn-outline-success">Admission</button></a>
+                        
                         </div>
                       </td>
                     </tr>

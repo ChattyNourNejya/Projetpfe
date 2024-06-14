@@ -3,6 +3,7 @@ import { Patient } from './patient';
 import { StayType } from './stay-type';
 import { StayStatus } from './stay-status';
 import { LeService } from './LeService';
+import { StayRoom } from 'app/patient/patient/entities/stay-room';
 
 export interface Stay {
   stayKy: number;
@@ -18,4 +19,5 @@ export interface Stay {
   stayPrevisionalEnd: Date;
   stayStatus: StayStatus;
   stayNote: string;
+  stayRooms: StayRoom[];
 }

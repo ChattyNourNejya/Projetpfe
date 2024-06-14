@@ -238,8 +238,8 @@
                           <form [formGroup]="stayFormGroup">
                             <div *ngIf="stayRoomsForService">
                               <mat-form-field
-                                appearance="outline"
                                 class="example-full-width"
+                                appearance="outline"
                               >
                                 <mat-label>Select Stay Room</mat-label>
                                 <mat-select formControlName="stayRoom_Nm">
@@ -247,7 +247,7 @@
                                     *ngFor="let room of stayRoomsForService"
                                     [value]="room"
                                   >
-                                    {{ room.stayRoom_Nm }}
+                                    {{ room.stayRoomNm }}
                                   </mat-option>
                                 </mat-select>
                               </mat-form-field>
@@ -255,8 +255,6 @@
                           </form>
                         </ng-template>
                       </mat-step>
-
-
                     </mat-vertical-stepper>
                   </fieldset>
                   <button

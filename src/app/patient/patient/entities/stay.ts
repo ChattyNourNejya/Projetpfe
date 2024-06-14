@@ -19,4 +19,5 @@ export interface Stay {
   stayPrevisionalEnd: Date;
   stayStatus: StayStatus;
   stayNote: string;
+  stayRooms:StayRoom[];
 }

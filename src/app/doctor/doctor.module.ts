@@ -28,6 +28,12 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { OwlDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 import { FormDialogComponent } from './calendar/form-dialog/form-dialog.component';
 import { MedicalActComponent } from './medical-act/medical-act.component';
+import { ActOptionsComponent } from './act-options/act-options.component';
+import { TestResultDiscussionComponent } from './test-result-discussion/test-result-discussion.component';
+import { EmergencyCareFollowupComponent } from './emergency-care-followup/emergency-care-followup.component';
+import { MedicalTestAnalysisComponent } from './medical-test-analysis/medical-test-analysis.component';
+import { PostSurgicalCheckupComponent } from './post-surgical-checkup/post-surgical-checkup.component';
+import { AllstaysstaffComponent } from './allstaysstaff/allstaysstaff.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +49,13 @@ import { MedicalActComponent } from './medical-act/medical-act.component';
     AllstaysComponent,
     CalendarComponent,
     FormDialogComponent,
-    MedicalActComponent, // Ajoutez le composant de calendrier ici
+    MedicalActComponent,
+    ActOptionsComponent,
+    TestResultDiscussionComponent,
+    EmergencyCareFollowupComponent,
+    MedicalTestAnalysisComponent,
+    PostSurgicalCheckupComponent,
+    AllstaysstaffComponent, // Ajoutez le composant de calendrier ici
   ],
   imports: [
     CommonModule,

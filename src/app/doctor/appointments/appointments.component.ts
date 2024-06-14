@@ -23,6 +23,7 @@ import {
   UnsubscribeOnDestroyAdapter,
 } from '@shared';
 import { formatDate } from '@angular/common';
+import { Patient } from '../patient/entities/patient';
 
 @Component({
   selector: 'app-appointments',
@@ -33,6 +34,15 @@ export class AppointmentsComponent
   extends UnsubscribeOnDestroyAdapter
   implements OnInit
 {
+  onView(patient: Patient) {
+    console.log(patient.patientStatus);
+    //this.onCloseVar=false;
+    this.patient = patient;
+    console.log(patient);
+    this.onViewVar = true;
+    this.action = 'onViewPatient';
+    this.hide = false;
+  }
   filterToggle = false;
   displayedColumns = [
     'select',
@@ -44,11 +54,20 @@ export class AppointmentsComponent
     'disease',
     'actions',
   ];
+
+  hide!: boolean;
+  action!: string;
+  onViewVar: boolean = false;
   exampleDatabase?: AppointmentsService;
   dataSource!: ExampleDataSource;
   selection = new SelectionModel<Appointments>(true, []);
   id?: number;
-  appointments?: Appointments;
+
+  patient!: Patient;
+  patients: any = [];
+  appointments: any = [];
+  medacts: any = [];
+
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
@@ -68,7 +87,15 @@ export class AppointmentsComponent
 
   ngOnInit() {
     this.loadData();
+    this.appointmentsService.getPatients().subscribe((patients) => {
+      this.patients = patients;
+    });
+
+    this.appointmentsService.getAllAppointments().subscribe((appointments) => {
+      this.appointments = appointments;
+    });
   }
+
   refresh() {
     this.loadData();
   }
@@ -233,7 +260,7 @@ export class ExampleDataSource extends DataSource<Appointments> {
       this.filterChange,
       this.paginator.page,
     ];
-    this.exampleDatabase.getAllAppointmentss();
+    this.exampleDatabase.getAllAppointments();
     return merge(...displayDataChanges).pipe(
       map(() => {
         // Filter data

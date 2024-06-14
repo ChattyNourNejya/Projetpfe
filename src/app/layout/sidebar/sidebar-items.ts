@@ -25,57 +25,10 @@ export const ROUTES: RouteInfo[] = [
     badgeClass: '',
     role: ['Admin'],
     submenu: [
-      {
-        path: '/admin/dashboard/main',
-        title: 'MENUITEMS.DASHBOARD.LIST.DASHBOARD1',
-        iconType: '',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        role: [''],
-        submenu: [],
-      },
-      {
-        path: '/admin/dashboard/dashboard2',
-        title: 'MENUITEMS.DASHBOARD.LIST.DASHBOARD2',
-        iconType: '',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        role: [''],
-        submenu: [],
-      },
-      {
-        path: '/admin/dashboard/doctor-dashboard',
-        title: 'MENUITEMS.DASHBOARD.LIST.DOCTOR-DASHBOARD',
-        iconType: '',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        role: [''],
-        submenu: [],
-      },
-      {
-        path: '/admin/dashboard/patient-dashboard',
-        title: 'MENUITEMS.DASHBOARD.LIST.PATIENT-DASHBOARD',
-        iconType: '',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        role: [''],
-        submenu: [],
-      },
+     
     ],
   },
-  
+
   {
     path: '',
     title: 'Insurances',
@@ -101,83 +54,9 @@ export const ROUTES: RouteInfo[] = [
       },
     ],
   },
-  
-  {
-    path: '',
-    title: 'Medical staff',
-    iconType: 'material-icons-two-tone',
-    icon: 'people_alt',
-    class: 'menu-toggle',
-    groupTitle: false,
-    badge: '',
-    badgeClass: '',
-    role: ['Admin'],
-    submenu: [
-      {
-        path: '/admin/staff/all-staff',
-        title: 'MENUITEMS.STAFF.LIST.ALL-STAFF',
-        iconType: '',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        role: [''],
-        submenu: [],
-      },
-    
-     
-      
-    ],
-  },
- 
-  
-  {
-    path: '',
-    title: 'Users account',
-    iconType: 'material-icons-two-tone',
-    icon: 'monetization_on',
-    class: 'menu-toggle',
-    groupTitle: false,
-    badge: '',
-    badgeClass: '',
-    role: ['Admin'],
-    submenu: [
-      {
-        path: '/admin/users/users',
-        title: 'Users Accounts List',
-        iconType: '',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        role: [''],
-        submenu: [],
-      },
-      
-      
-    ],
-  },
-  
-  
-  
-  
-  
 
   // Doctor Modules
-  {
-    path: '/doctor/dashboard',
-    title: 'MENUITEMS.DOCTOR.DASHBOARD',
-    iconType: 'material-icons-two-tone',
-    icon: 'space_dashboard',
-    class: '',
-    groupTitle: false,
-    badge: '',
-    badgeClass: '',
-    role: ['Doctor'],
-    submenu: [],
-  },
+  
   {
     path: '/doctor/appointments',
     title: 'MENUITEMS.DOCTOR.APPOINTMENTS',
@@ -190,46 +69,10 @@ export const ROUTES: RouteInfo[] = [
     role: ['Doctor'],
     submenu: [],
   },
-  {
-    path: '/doctor/doctors',
-    title: 'MENUITEMS.DOCTOR.DOCTORS',
-    iconType: 'material-icons-two-tone',
-    icon: 'supervised_user_circle',
-    class: '',
-    groupTitle: false,
-    badge: '',
-    badgeClass: '',
-    role: ['Doctor'],
-    submenu: [],
-  },
-  {
-    path: '/doctor/patients',
-    title: 'MENUITEMS.DOCTOR.PATIENTS',
-    iconType: 'material-icons-two-tone',
-    icon: 'face',
-    class: '',
-    groupTitle: false,
-    badge: '',
-    badgeClass: '',
-    role: ['Doctor'],
-    submenu: [],
-  },
-  {
-    path: '/doctor/settings',
-    title: 'Happened appointement',
-    iconType: 'material-icons-two-tone',
-    icon: 'event_note',
-    class: '',
-    groupTitle: false,
-    badge: '',
-    badgeClass: '',
-    role: ['Doctor'],
-    submenu: [],
-  },
 
   {
     path: '/doctor/happened_appointment',
-    title: 'Prevesional appointment',
+    title: 'calendar',
     iconType: 'material-icons-two-tone',
     icon: 'event_note',
     class: '',
@@ -240,8 +83,8 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
   {
-    path: '/doctor/Medical_act',
-    title: 'Medical act',
+    path: '/doctor/allstays_staff',
+    title: 'All Stays',
     iconType: 'material-icons-two-tone',
     icon: 'local_hospital',
     class: '',
@@ -265,19 +108,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   // },*/
   // Patient Modules
-  {
-    path: '/patient/dashboard',
-    title: 'MENUITEMS.PATIENT.DASHBOARD',
-    iconType: 'material-icons-two-tone',
-    icon: 'space_dashboard',
-    class: '',
-    groupTitle: false,
-    badge: '',
-    badgeClass: '',
-    role: ['Patient'],
-    submenu: [],
-  },
-
+  
   {
     path: '/patient/patients',
     title: 'Patients',
@@ -292,7 +123,7 @@ export const ROUTES: RouteInfo[] = [
   },
 
   {
-    path: '/patient/prescriptions',
+    path: '/patient/allstays',
     title: 'All stays',
     iconType: 'material-icons-two-tone',
     icon: 'receipt_long',
@@ -315,9 +146,9 @@ export const ROUTES: RouteInfo[] = [
     role: ['Patient'],
     submenu: [],
   },
-  {
-    path: '/patient/billing',
-    title: 'MENUITEMS.PATIENT.BILLING',
+  /*{
+    path: '/patient/archive',
+    title: 'Archive',
     iconType: 'material-icons-two-tone',
     icon: 'receipt',
     class: '',
@@ -326,8 +157,8 @@ export const ROUTES: RouteInfo[] = [
     badgeClass: '',
     role: ['Patient'],
     submenu: [],
-  },
-  {
+  },*/
+  /* {
     path: '/apps/chat',
     title: 'MENUITEMS.PATIENT.CHAT',
     iconType: 'material-icons-two-tone',
@@ -338,8 +169,8 @@ export const ROUTES: RouteInfo[] = [
     badgeClass: '',
     role: ['Patient'],
     submenu: [],
-  },
-  {
+  },*/
+  /*{
     path: '/patient/settings',
     title: 'MENUITEMS.PATIENT.SETTINGS',
     iconType: 'material-icons-two-tone',
@@ -350,11 +181,11 @@ export const ROUTES: RouteInfo[] = [
     badgeClass: '',
     role: ['Patient'],
     submenu: [],
-  },
+  },*/
 
   // Common Modules
 
-  {
+  /*{
     path: '',
     title: 'Apps',
     iconType: '',
@@ -365,7 +196,7 @@ export const ROUTES: RouteInfo[] = [
     badgeClass: '',
     role: ['Admin', 'Doctor'],
     submenu: [],
-  },
+  },*/
   /*
   {
     path: 'calendar',
@@ -550,19 +381,8 @@ export const ROUTES: RouteInfo[] = [
       },
     ],
    },*/
-  {
-    path: '',
-    title: 'Components',
-    iconType: '',
-    icon: '',
-    class: '',
-    groupTitle: true,
-    badge: '',
-    badgeClass: '',
-    role: ['Admin'],
-    submenu: [],
-  },
-  {
+
+  /* {
     path: '',
     title: 'User Interface (UI)',
     iconType: 'material-icons-two-tone',
@@ -778,8 +598,8 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
-  {
+  },*/
+  /* {
     path: '',
     title: 'Forms',
     iconType: 'material-icons-two-tone',
@@ -863,8 +683,8 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
-  {
+  },*/
+  /* {
     path: '',
     title: 'Tables',
     iconType: 'material-icons-two-tone',
@@ -912,8 +732,8 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
-  {
+  },*/
+  /*{
     path: '',
     title: 'Charts',
     iconType: 'material-icons-two-tone',
@@ -985,8 +805,8 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
-  {
+  },*/
+  /*{
     path: '',
     title: 'Timeline',
     iconType: 'material-icons-two-tone',
@@ -1022,8 +842,8 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
-  {
+  },*/
+  /*{
     path: '',
     title: 'Icons',
     iconType: 'material-icons-two-tone',
@@ -1059,8 +879,8 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
-  {
+  },*/
+  /*{
     path: '',
     title: 'Authentication',
     iconType: 'material-icons-two-tone',
@@ -1144,8 +964,8 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
-  {
+  },*/
+  /* {
     path: '',
     title: 'Extra Pages',
     iconType: 'material-icons-two-tone',
@@ -1217,8 +1037,8 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
-  {
+  },*/
+  /* {
     path: '',
     title: 'Maps',
     iconType: 'material-icons-two-tone',
@@ -1242,8 +1062,8 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
-  {
+  },*/
+  /* {
     path: '',
     title: 'Multi level Menu',
     iconType: 'material-icons-two-tone',
@@ -1329,5 +1149,5 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
     ],
-  },
+  },*/
 ];

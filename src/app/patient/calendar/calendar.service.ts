@@ -13,6 +13,11 @@ import { LeService } from 'app/doctor/patient/entities/LeService';
 import { ServiceZone } from './service-zone';
 import { FunctionalUnit } from './functional-unit';
 import { RoomGroup } from './room-group';
+import { Patient } from '../patient/entities/patient';
+import { MedicalAct } from './medical-act';
+import { MedVisitSchdld } from './med-visit-schdld';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +40,30 @@ export class CalendarService {
 
   getService(): Observable<LeService[]> {
     return this.http.get<LeService[]>('http://localhost:8085/Leservice');
+  }
+
+  getPatients(): Observable<Patient[]> {
+    return this.http
+      .get<Patient[]>('http://localhost:8085/getPatient')
+      .pipe(catchError(this.errorHandler));
+  }
+  getMedicalActs(): Observable<MedicalAct[]> {
+    return this.http.get<MedicalAct[]>(`http://localhost:8085/medicalacts`);
+  }
+
+  createMedVisitSchdld(
+    medVisitSchdld: MedVisitSchdld
+  ): Observable<MedVisitSchdld> {
+    return this.http.post<MedVisitSchdld>(
+      `http://localhost:8085/medvisitschdlds/add`,
+      medVisitSchdld
+    );
+  }
+
+  getAllMedVisitSchdlds(): Observable<MedVisitSchdld[]> {
+    return this.http
+      .get<MedVisitSchdld[]>(`http://localhost:8085/medvisitschdlds`)
+      .pipe(catchError(this.errorHandler));
   }
 
   getServiceZone(): Observable<ServiceZone[]> {

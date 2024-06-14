@@ -13,7 +13,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { CalendarOptions, DateSelectArg } from '@fullcalendar/core';
+import { CalendarOptions, DateSelectArg, EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
@@ -82,6 +82,7 @@ export class CalendarComponent
   ngOnInit(): void {
     this.calendarOptions.initialEvents = [];
     this.getService();
+    this.getMedVisitSchdlds();
   }
 
   loadRooms(groupId: number) {
@@ -103,15 +104,16 @@ export class CalendarComponent
       interactionPlugin,
       resourceTimeGridPlugin,
     ],
+    initialView: 'resourceTimeGridDay',
+    events: [],
+    editable: true,
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
     },
-    resources: [],
-    initialView: 'resourceTimeGridDay',
+
     weekends: true,
-    editable: true,
     selectable: true,
     selectMirror: true,
     dayMaxEvents: true,
@@ -119,22 +121,30 @@ export class CalendarComponent
     dateClick: this.addNewEvent.bind(this),
   };
 
-
-  getResources(): any[] {
-    return [
-      {
-        id: 'a',
-        title: 'Room A',
+  getMedVisitSchdlds(): void {
+    this.calendarService.getAllMedVisitSchdlds().subscribe(
+      (appointments: any[]) => {
+        const events: EventInput[] = appointments.map((appointment: any) => ({
+          title:
+            appointment.medVisitSchdld_PatientKy?.patientFirstName || 'No Name',
+          start: appointment.medVisitSchld_UnxTmBgn,
+          end: appointment.medVisitSchdld_UnxTmEnd,
+          extendedProps: {
+            status: appointment.medVisitSchdld_Status,
+            medicalAct: appointment.medVisitSchdld_MedActKy?.medicalAct_Name,
+          },
+        }));
+        console.log('Fetched appointments:', events); // Debugging log
+        this.calendarOptions.events = events;
+        this.refreshCalendar();
       },
-      {
-        id: 'b',
-        title: 'Room B',
-      },
-      {
-        id: 'c',
-        title: 'Room C',
-      },
-    ];
+      (error) => {
+        console.error('Error fetching appointments:', error);
+      }
+    );
+  }
+  refreshCalendar() {
+    this.calendarOptions = { ...this.calendarOptions };
   }
 
   addNewEvent() {
@@ -208,7 +218,7 @@ export class CalendarComponent
 
   getService() {
     this.calendarService.getService().subscribe(
-      (data:LeService[]) => {
+      (data: LeService[]) => {
         this.stayPertinentService = data;
       },
       (error: any) => {
@@ -279,6 +289,7 @@ export class CalendarComponent
       (data: Room[]) => {
         this.rooms = data;
         this.updateCalendarWithRooms(this.rooms);
+        this.getMedVisitSchdlds(); // Fetch appointments after rooms are loaded
       },
       (error: any) => {
         console.error('Error retrieving Rooms:', error);
@@ -293,10 +304,14 @@ export class CalendarComponent
       title: room.room_Nm,
     }));
 
+    console.log('Rooms loaded:', rooms); // Debugging log
     this.calendarOptions = {
       ...this.calendarOptions,
       resources: resources,
     };
+
+    // Trigger re-render
+    this.refreshCalendar();
   }
 
   onNext2() {

@@ -24,7 +24,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'prescriptions',
+    path: 'allstays',
     component: PrescriptionsComponent,
   },
   {
@@ -52,7 +52,7 @@ const routes: Routes = [
     component: MedicalRecordsComponent,
   },
   {
-    path: 'billing',
+    path: 'archive',
     component: BillingComponent,
   },
   {

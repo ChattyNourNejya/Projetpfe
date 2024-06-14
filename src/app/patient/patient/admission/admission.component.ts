@@ -39,8 +39,9 @@ export class AdmissionComponent implements OnInit {
   addLeserviceForm!: FormGroup;
 
   insurances: Insurance[] = [];
-  stayPertinentService: LeService[] = [];
-  stayRoomsForService: StayRoom[] = [];
+  stayPertinentService: any[] = [];
+  stayRoomsForService: any[] = [];
+  stayrooms: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -97,9 +98,7 @@ export class AdmissionComponent implements OnInit {
 
     this.addLeserviceForm = this.generateLeserviceFormGroup();
     this.Leservice1 = this.generateLeserviceFormGroup();
-    this.Leservice2 = this.generateLeserviceFormGroup();
-    this.Leservice3 = this.generateLeserviceFormGroup();
-
+    
     this.stayFormGroup = this.generatestayFormGroup();
   }
 
@@ -146,8 +145,8 @@ export class AdmissionComponent implements OnInit {
   }
 
   generatestayFormGroup(): FormGroup {
-    return this.fb.group({
-      stayRoom_Nm: ['', [Validators.required]],
+  return this.fb.group({
+     stayRoom_Nm: ['', [Validators.required]],
     });
   }
 
@@ -196,28 +195,44 @@ export class AdmissionComponent implements OnInit {
     stayDetails: any,
     insuranceDetails: any[],
     serviceDetails: any[],
-    roomDetails: any,
+    roomDetails: any[]
   ): void {
-    const payload = {
-      insurances:
-        insuranceDetails.length > 0
-          ? [{ insNm: insuranceDetails[0].insNm }]
-          : [],
-      stay_pertinent_service:
-        serviceDetails.length > 0
-          ? [{ service_Nm: serviceDetails[0].service_Nm }]
-          : [],
-      stay_emergency_contact: stayDetails.stayEmergencyContact,
-      stay_type: stayDetails.stayType,
-      stay_family_doctor: stayDetails.stayFamilyDoctor,
-      stay_family_doctor_email: stayDetails.stayFamilyDoctorEmail,
-      stay_family_doctor_phone: stayDetails.stayFamilyDoctorPhone,
-      stay_previsional_begin: stayDetails.stayPrevisionalBegin,
-      stay_previsional_end: stayDetails.stayPrevisionalEnd,
-      stay_status: stayDetails.stayStatus,
-      stay_note: stayDetails.stayNote,
-       stay_room: roomDetails.stayRoom_Nm || ''
-    };
+ const payload = {
+   insurances: insuranceDetails.map((insurance: any) => ({
+     insKy: insurance.insKy,
+     insNm: insurance.insNm,
+     insNumber: insurance.insNumber,
+     policyNum: insurance.policyNum,
+     policyNm: insurance.policyNm,
+     website: insurance.website,
+     policyType: insurance.policyType,
+     insContactNm: insurance.insContactNm,
+     insContactEml: insurance.insContactEml,
+     insContactPhone: insurance.insContactPhone,
+     insuranceUnxTmCrt: insurance.insuranceUnxTmCrt,
+     insuranceUnxTmUpdt: insurance.insuranceUnxTmUpdt,
+     insuranceRcrdSts: insurance.insuranceRcrdSts,
+   })),
+   stay_pertinent_service: serviceDetails.map((service: any) => ({
+     service_ky: service.service_ky,
+     service_Nm: service.service_Nm,
+
+     stayRooms: service.stayRooms || [],
+
+     stayRoomNm: service.stayRooms.stayRoomNm || [],
+   })),
+   stay_emergency_contact: stayDetails.stayEmergencyContact,
+   stay_type: stayDetails.stayType,
+   stay_family_doctor: stayDetails.stayFamilyDoctor,
+   stay_family_doctor_email: stayDetails.stayFamilyDoctorEmail,
+   stay_family_doctor_phone: stayDetails.stayFamilyDoctorPhone,
+   stay_previsional_begin: stayDetails.stayPrevisionalBegin,
+   stay_previsional_end: stayDetails.stayPrevisionalEnd,
+   stay_status: stayDetails.stayStatus,
+   stay_note: stayDetails.stayNote,
+ };
+
+    console.log('Payload:', JSON.stringify(payload, null, 2)); // Log the payload
 
     this.stayService.createStay(patientKy, payload).subscribe(
       (data) => {
@@ -227,16 +242,7 @@ export class AdmissionComponent implements OnInit {
       (error: any) => {
         console.log('Error creating stay', error);
         this.openErrorSnackBar('Error creating stay');
-
-        if (error.status === 400) {
-          console.log('Bad Request: ', error.error);
-        } else if (error.status === 401) {
-          console.log('Unauthorized: ', error.error);
-        } else if (error.status === 404) {
-          console.log('Not Found: ', error.error);
-        } else if (error.status === 201) {
-          console.log('Done');
-        }
+        // Handle error status codes
       }
     );
   }
@@ -247,17 +253,12 @@ export class AdmissionComponent implements OnInit {
       this.insurance1.value,
       this.insurance2.value,
       this.insurance3.value,
-    ];
+    ].filter((ins) => ins); 
+
     const serviceDetails = [this.Leservice1.value];
 
-    const roomDetails = [this.stayFormGroup.value];
+    const roomDetails = this.stayFormGroup.value.stayRooms || []; // Ensure stayRooms are included in the roomDetails array
 
-    this.stayallForm = {
-      stayDetails,
-      insuranceDetails,
-      serviceDetails,
-      roomDetails,
-    };
     this.addStay(
       patientKy,
       stayDetails,
@@ -265,6 +266,12 @@ export class AdmissionComponent implements OnInit {
       serviceDetails,
       roomDetails
     );
+  }
+
+  onRoomSelected(selectedRoom: any) {
+    this.stayFormGroup.patchValue({
+      stayRoomNm: selectedRoom.stayRoomNm,
+    });
   }
 
   getInsurances() {
@@ -316,7 +323,6 @@ export class AdmissionComponent implements OnInit {
   onNext1() {
     if (this.selectedServiceId) {
       this.getStayRoomsForService(this.selectedServiceId);
-     
     }
   }
 }

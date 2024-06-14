@@ -90,37 +90,27 @@
                             </span>
                           </div>
                         </div>
-                        <div
-                          *ngFor="
-                            let service of stay.stay_pertinent_service
-                          "
-                          class="text-dark-grey"
-                        >
-                          <i class="material-icons" style="vertical-align: middle">event</i>
-                          <strong>Services: </strong>
-                          <span class="ml-2">{{ service.service_Nm }}</span>
+     <div *ngFor="let service of stay.stay_pertinent_service" class="text-dark-grey">
+  <i class="material-icons" style="vertical-align: middle">event</i>
+  <strong>Services: </strong>
+  <span class="ml-2">{{ service.service_Nm }}</span>
 
+  <div *ngFor="let room of service.stayRooms" class="text-dark-grey">
+    <p class="text-dark-grey">
+      <i class="far fa-clock"></i>
+      <strong>Stay Room: </strong>
+      <span class="ml-2">{{ room.stayRoomNm }}</span>
+    </p>
+  </div>
+</div>
 
-                             <p class="text-dark-grey">
-                        <i class="far fa-clock"></i>
-                        <strong>Stay Room : </strong>
-                        <span class="ml-2">{{ service.stayRoom }}</span>
-                      </p>
-                      
-                        </div>
 
 
                       
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-12 d-flex justify-content-end">
-                      <button mat-raised-button color="primary">
-                        Edit stay
-                      </button>
-                    </div>
-                  </div>
+                 
                 </div>
               </div>
             </div>

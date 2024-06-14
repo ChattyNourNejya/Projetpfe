@@ -26,6 +26,10 @@ export class StayserviceService {
     return this.http.get<Insurance[]>(`${this.baseUrl}/healthInsurance`);
   }
 
+  retrieveStays(): Observable<Stay[]> {
+    return this.http.get<Stay[]>(`${this.baseUrl}/stays`);
+  }
+
   getAllServices(): Observable<LeService[]> {
     return this.http.get<LeService[]>(`${this.baseUrl}/Leservice`);
   }

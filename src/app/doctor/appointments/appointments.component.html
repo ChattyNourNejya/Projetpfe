@@ -1,9 +1,11 @@
 <section class="content">
   <div class="content-block">
     <div class="block-header">
-      <!-- breadcrumb -->
-      <app-breadcrumb [title]="'All Appointments'" [items]="['Appointments']" [active_item]="'All Appointments'">
-      </app-breadcrumb>
+      <app-breadcrumb
+        [title]="'All Appointments'"
+        [items]="['Appointments']"
+        [active_item]="'All Appointments'"
+      ></app-breadcrumb>
     </div>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -15,9 +17,16 @@
                   <h2>Appointments</h2>
                 </li>
                 <li class="tbl-search-box">
-                  <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                  <input placeholder="Search" type="text" #filter class="browser-default search-field"
-                    aria-label="Search box">
+                  <label for="search-input"
+                    ><i class="material-icons search-icon">search</i></label
+                  >
+                  <input
+                    placeholder="Search"
+                    type="text"
+                    #filter
+                    class="browser-default search-field"
+                    aria-label="Search box"
+                  />
                 </li>
               </ul>
             </div>
@@ -25,122 +34,75 @@
               <ul class="tbl-export-btn">
                 <li>
                   <div class="export-button m-l-10" matTooltip="XLSX">
-                    <img src="assets/images/icons/xlsx.png" alt="" (click)="exportExcel()" />
+                   
                   </div>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="body overflow-auto">
-            <div class="responsive_table">
-              <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
-                <!-- Checkbox Column -->
-                <ng-container matColumnDef="select">
-                  <mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'">
-                    <mat-checkbox (change)="$event ? masterToggle() : null"
-                      [checked]="selection.hasValue() && isAllSelected()"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()" [ngClass]="'tbl-checkbox'">
-                    </mat-checkbox>
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-6'">
-                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                      [checked]="selection.isSelected(row)" [ngClass]="'tbl-checkbox'">
-                    </mat-checkbox>
-                  </mat-cell>
-                </ng-container>
-                <!-- ID Column -->
-                <ng-container matColumnDef="id">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Id
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="img">
-                  <mat-header-cell mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'"> Image
-                  </mat-header-cell>
-                  <mat-cell mat-cell *matCellDef="let row" class="table-img tbl-col-width-per-6"> <span
-                      class="mobile-label">Image:</span> <img [src]="row.img" />
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="name">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Patient Name
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"><span class="mobile-label">Patient Name:</span> {{row.name}}
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="dateTime">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Date & Time
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <span class="mobile-label">Date & Time:</span> {{row.dateTime | date: 'MM/dd/yyyy, HH:mm'}}
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="mobile">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> <span class="mobile-label">Mobile:</span> {{row.mobile}}
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="email">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Email
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"><span class="mobile-label">Email:</span> {{row.email}}
-                  </mat-cell>
-                </ng-container>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Patient Full Name</th>
+                  <th>Medical Act / type</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>Status</th>
+                  <th>Medical Staff</th>
 
-                <ng-container matColumnDef="address">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Address
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" class="column-nowrap"> <span
-                      class="mobile-label">Address:</span>{{row.address}}
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="disease">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Disease
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" class="column-nowrap"> <span
-                      class="mobile-label">Disease:</span>{{row.disease}}
-                  </mat-cell>
-                </ng-container>
-                <!-- actions -->
-                <ng-container matColumnDef="actions">
-                  <mat-header-cell class="psl-3 tbl-col-width-per-10" *matHeaderCellDef>Actions
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row; let i=index;" class="psl-3 tbl-col-width-per-10">
-                    <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
-                      <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu">
-                      <button mat-menu-item>
-                        <i class="material-icons-two-tone align-middle msr-2">done</i>
-                        <span>Approve</span>
-                      </button>
-                      <button mat-menu-item>
-                        <i class="material-icons-two-tone align-middle msr-2">highlight_off</i>
-                        <span>Cancel</span>
-                      </button>
-                    </mat-menu>
-                  </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="displayedColumns">
-                </mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="detailsCall(row)"
-                  [style.cursor]="'pointer'" matRipple>
-                </mat-row>
-              </mat-table>
-              <!-- Loading spinner -->
-              <div *ngIf="exampleDatabase?.isTblLoading" class="tbl-spinner">
-                <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
-                </mat-progress-spinner>
-              </div>
-              <div *ngIf="!exampleDatabase?.isTblLoading" class="no-results"
-                [style.display]="dataSource.renderedData.length === 0 ? '' : 'none'">
-                No results
-              </div>
-              <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
-                [pageSizeOptions]="[5, 10, 25, 100]">
-              </mat-paginator>
-            </div>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let appointment of appointments">
+                  <td>
+                    {{ appointment.medVisitSchdld_PatientKy.patientLastName }}
+                    {{ appointment.medVisitSchdld_PatientKy.patientMiddleName }}
+                    {{ appointment.medVisitSchdld_PatientKy.patientFirstName }}
+                  </td>
+               <td>
+                        {{ appointment.medVisitSchdld_MedActKy.medicalAct_Name }} 
+          {{ appointment.medVisitSchdld_MedActKy.medicalAct_Type }} </td>
+                  <td>
+                    {{ appointment.medVisitSchld_UnxTmBgn | date : "short" }}
+                  </td>
+                  <td>
+                    {{ appointment.medVisitSchdld_UnxTmEnd | date : "short" }}
+                  </td>
+                  <td
+                    [ngClass]="{
+                      RePlanned:
+                        appointment.medVisitSchdld_Status === 'RePlanned',
+                      Planned: appointment.medVisitSchdld_Status === 'Planned',
+                      Cancelled:
+                        appointment.medVisitSchdld_Status === 'Cancelled'
+                    }"
+                  >
+                    {{ appointment.medVisitSchdld_Status }}
+                  </td>
+                  <td>
+                    <ng-container
+                      *ngFor="
+                        let staffMember of appointment.staff;
+                        let isLast = last
+                      "
+                    >
+                      {{ staffMember.staff_FrstNm
+                      }}     {{ staffMember.staff_Nm
+                      }}<span *ngIf="!isLast">, </span>
+                    </ng-container>
+                  </td>
+                  <td>
+                    <a [routerLink]="['/doctor/act_options']"
+                      ><button type="button" class="btn btn-outline-danger">
+                        follow up
+                      </button></a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

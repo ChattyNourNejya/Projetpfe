@@ -1,194 +1,125 @@
 <section class="content">
   <div class="content-block">
     <div class="block-header">
-      <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Prescriptions'" [items]="[]" [active_item]="'Prescriptions'"></app-breadcrumb>
+      <app-breadcrumb
+        [title]="' All Stays'"
+        [items]="[]"
+        [active_item]="'Stays'"
+      ></app-breadcrumb>
     </div>
-    <div class="row clearfix">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
-          <div class="header">
-            <h2>Prescriptions</h2>
-
+          <div class="materialTableHeader">
+            <div class="left">
+              <ul class="header-buttons-left ms-0">
+                <li class="tbl-title">
+                  <h2>Stays</h2>
+                </li>
+              </ul>
+            </div>
+            <div class="right">
+              <ul class="tbl-export-btn">
+                <li class="tbl-header-btn">
+                  <div class="m-l-10" matTooltip="Filter">
+                    <button
+                      mat-mini-fab
+                      color="primary"
+                      (click)="toggleFilters()"
+                    >
+                      <mat-icon class="col-white" *ngIf="!showFilters"
+                        >arrow_downward</mat-icon
+                      >
+                      <mat-icon class="col-white" *ngIf="showFilters"
+                        >arrow_upward</mat-icon
+                      >
+                    </button>
+                  </div>
+                </li>
+                <li class="tbl-header-btn">
+                  <div class="m-l-10" matTooltip="REFRESH">
+                    <button mat-mini-fab color="primary" (click)="refresh()">
+                      <mat-icon class="col-white">refresh</mat-icon>
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="body">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-hover ">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Title</th>
-                      <th>Created by</th>
-                      <th>Date</th>
-                      <th>Diseases</th>
-                      <th>Actions </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>#A348</td>
-                      <td>Prescription 1</td>
-                      <td><a href="mailto:test@gmail.com"> Dr.Jacob Ryan </a></td>
-                      <td>12/05/2016 </td>
-                      <td>
-                        <div class="badge col-red">Fever</div>
-                      </td>
-                      <td>
-                        <button mat-icon-button>
-                          <mat-icon class="col-purple">cloud_download</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-green">visibility</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-orange">delete</mat-icon>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>#A645</td>
-                      <td>Prescription 2</td>
-                      <td><a href="mailto:test@gmail.com"> Dr.Rajesh </a></td>
-                      <td>12/05/2016 </td>
-                      <td>
-                        <div class="badge col-green">Cholera</div>
-                      </td>
-                      <td>
-                        <button mat-icon-button>
-                          <mat-icon class="col-purple">cloud_download</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-green">visibility</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-orange">delete</mat-icon>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>#A873</td>
-                      <td>Prescription 3</td>
-                      <td><a href="mailto:test@gmail.com"> Dr.Jay Soni </a></td>
-                      <td>12/05/2016 </td>
-                      <td>
-                        <div class="badge col-purple">Jaundice</div>
-                      </td>
-                      <td>
-                        <button mat-icon-button>
-                          <mat-icon class="col-purple">cloud_download</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-green">visibility</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-orange">delete</mat-icon>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>#A927</td>
-                      <td>Prescription 4</td>
-                      <td><a href="mailto:test@gmail.com"> Dr.John Deo </a></td>
-                      <td>12/05/2016 </td>
-                      <td>
-                        <div class="badge col-purple">Typhod</div>
-                      </td>
-                      <td>
-                        <button mat-icon-button>
-                          <mat-icon class="col-purple">cloud_download</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-green">visibility</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-orange">delete</mat-icon>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>#A228</td>
-                      <td>Prescription 5</td>
-                      <td><a href="mailto:test@gmail.com"> Dr.Megha Trivedi </a></td>
-                      <td>12/05/2016 </td>
-                      <td>
-                        <div class="badge col-orange">Maleria</div>
-                      </td>
-                      <td>
-                        <button mat-icon-button>
-                          <mat-icon class="col-purple">cloud_download</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-green">visibility</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-orange">delete</mat-icon>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>#A345</td>
-                      <td>Prescription 6</td>
-                      <td><a href="mailto:test@gmail.com"> Dr.Sarah Smith </a></td>
-                      <td>12/05/2016 </td>
-                      <td>
-                        <div class="badge col-cyan">Infection</div>
-                      </td>
-                      <td>
-                        <button mat-icon-button>
-                          <mat-icon class="col-purple">cloud_download</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-green">visibility</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-orange">delete</mat-icon>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>#A765</td>
-                      <td>Prescription 7</td>
-                      <td><a href="mailto:test@gmail.com"> Dr.Jacob Ryan </a></td>
-                      <td>12/05/2016 </td>
-                      <td>
-                        <div class="badge col-red">Fever</div>
-                      </td>
-                      <td>
-                        <button mat-icon-button>
-                          <mat-icon class="col-purple">cloud_download</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-green">visibility</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-orange">delete</mat-icon>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>#A125</td>
-                      <td>Prescription 8</td>
-                      <td><a href="mailto:test@gmail.com"> Dr.Rajesh </a></td>
-                      <td>12/05/2016 </td>
-                      <td>
-                        <div class="badge col-green">Cholera</div>
-                      </td>
-                      <td>
-                        <button mat-icon-button>
-                          <mat-icon class="col-purple">cloud_download</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-green">visibility</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                          <mat-icon class="col-orange">delete</mat-icon>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+          <div class="body overflow-auto">
+            <div class="responsive_table">
+              <div class="row filters" *ngIf="showFilters">
+     <div class="col-md-3">
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Doctor Name</mat-label>
+    <input matInput type="text" [(ngModel)]="doctorNameQuery" (input)="searchStays()" placeholder="Search by Doctor Name">
+  </mat-form-field>
+</div>
+
+
+                <div class="col-md-3">
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
+                    <mat-label>StayType</mat-label>
+                    <mat-select
+                      [(ngModel)]="staytypeQuery"
+                      (selectionChange)="searchStays()"
+                    >
+                      <mat-option value="">None</mat-option>
+                      <mat-option [value]="'Ambulatory'">Ambulatory</mat-option>
+                      <mat-option [value]="'Surgical'">Surgical</mat-option>
+                      <mat-option [value]="'Emergency'">Emergency</mat-option>
+                      <mat-option [value]="'Elective'">Elective</mat-option>
+                                            <mat-option [value]="'Admission_for_specialized_care'">Admission_for_specialized_care</mat-option>
+                                            <mat-option [value]="'Admission_for_palliative_care'">    Admission_for_palliative_care
+</mat-option>
+                              <mat-option [value]="'Admission_for_diagnostic_tests_or_evaluation'">  Admission_for_diagnostic_tests_or_evaluation 
+</mat-option>
+
+                    </mat-select>
+                  </mat-form-field>
+                </div>
               </div>
+              <table
+                class="table table-hover"
+                matSort
+                [class.container-list]="showFilters"
+              >
+                <thead>
+                  <tr>
+                    <th mat-sort-header="stayFamilyDoctor">Doctor Name</th>
+                    <th mat-sort-header="stayType">Stay Type</th>
+                    <th mat-sort-header="stayPrevisionalBegin">
+                      Stay Previsional Begin
+                    </th>
+                    <th mat-sort-header="stayPrevisionalEnd">
+                      Stay Previsional End
+                    </th>
+                    <th mat-sort-header="stayRoom">Stay Room</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let stay of filteredStays">
+                    <tr>
+                      <td>{{ stay.stay_family_doctor }}</td>
+                      <td>{{ stay.stay_type }}</td>
+                      <td>{{ stay.stay_previsional_begin | date }}</td>
+                      <td>{{ stay.stay_previsional_end | date }}</td>
+                      <td>
+                        <ng-container
+                          *ngFor="let service of stay.stay_pertinent_service"
+                        >
+                          <ng-container *ngFor="let room of service.stayRooms">
+                            {{ room.stayRoomNm }}<br />
+                          </ng-container>
+                        </ng-container>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -196,3 +127,6 @@
     </div>
   </div>
 </section>
+
+
+
